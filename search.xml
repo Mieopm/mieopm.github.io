@@ -45,11 +45,12 @@ ayer调教部分以及遇到的bug可供参考
 <p><em>碎碎念</em>：主播wsl2和codespace都试过了，能成功搭建博客但是部署theme都有大大小小的问题，最终win11本地成功搭建模板化的主题，目前商在个性化修改中。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1.环境准备"></a>1.环境准备</h2><p>hexo的安装前提是</p>
 <ul>
-<li><a href="nodejs.org/zh-cn">Node.js</a>nodejs.org&#x2F;zh-cn(安装时自带npm平台)</li>
-<li><a href="https://git-scm.com/downloads">Git</a><a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a><br>（当然可以使用镜像站点下载）</li>
-</ul>
-<ul>
-<li>说明：<br>如果你细心的看了官方文档那么你会发现它会提及<code>Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本</code>,以及后面附带了一张hexo与Node.js版本一一对应的表格。本人的经验是可以先一律无脑最新版，大部分旧版都兼容。若主题有特殊版本要求建议按照主题的要求来，<del>虽然我没有那么做</del>*</li>
+<li><p><a href="nodejs.org/zh-cn">Node.js</a>   nodejs.org&#x2F;zh-cn(安装时自带npm平台)</p>
+</li>
+<li><p><a href="https://git-scm.com/downloads">Git</a>  <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a><br>（当然可以使用镜像站点下载）</p>
+</li>
+<li><p><em>说明：</em><br> <em>如果你细心的看了官方文档那么你会发现它会提及<code>Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本</code>,以及后面附带了一张hexo与Node.js版本一一对应的表格。本人的经验是可以先一律无脑最新版，大部分旧版都兼容。若主题有特殊版本要求建议按照主题的要求来，<del>虽然我没有那么做</del></em></p>
+</li>
 </ul>
 <p>下载 Node.js 和 Git 程序并安装，一路点 “下一步” 按默认配置完成安装。</p>
 <p>安装完成后，Win+R 输入 cmd 并打开，依次输入 node -v、npm -v 和 git –version 并回车，如下图出现程序版本号即可。</p>
