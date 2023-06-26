@@ -49,20 +49,26 @@ ayer调教部分以及遇到的bug可供参考
 </li>
 <li><p><a href="https://git-scm.com/downloads">Git</a>  <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a><br>（当然以上都可以使用镜像站点下载）</p>
 </li>
-<li><p><em>说明：</em><br> <em>如果你细心的看了官方文档那么你会发现它会提及<code>Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本</code>,以及后面附带了一张hexo与Node.js版本一一对应的表格。本人的经验是可以先一律无脑最新版，大部分旧版都兼容。若主题有特殊版本要求建议按照主题的要求来。<del>虽然我没有那么做</del></em></p>
+<li><p><em>说明：</em><br> 如果你细心的看了官方文档那么你会发现它会提及<code>Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本</code>,以及后面附带了一张hexo与Node.js版本一一对应的表格。本人的经验是可以先一律无脑最新版，大部分旧版都兼容。若主题有特殊版本要求建议按照主题的要求来。<del>虽然我没有那么做</del></p>
 </li>
 </ul>
 <p>下载 Node.js 和 Git 程序并安装，一路点 “下一步” 按默认配置完成安装。</p>
 <p>安装完成后，Win+R 输入 cmd 并打开，依次输入 node -v、npm -v 和 git –version 并回车，如下图出现程序版本号即可。</p>
 <h2 id="2-安装hexo"><a href="#2-安装hexo" class="headerlink" title="2.安装hexo"></a>2.安装hexo</h2><p>首先你需要准备一个<strong>完全空白的文件夹</strong>（本文假设为blog）来存放hexo的程序文件。新建好后在该文件夹空白处右键选择<code>Git Bash Here</code>,这个选项可能藏在win11的<code>显示更多选项</code>。</p>
-<h2 id="npm一键安装hexo程序指令："><a href="#npm一键安装hexo程序指令：" class="headerlink" title="npm一键安装hexo程序指令："></a>npm一键安装hexo程序指令：</h2><pre><code>npm install -g hexo-cli
+<p>npm一键安装hexo程序指令：</p>
+<hr>
+<pre><code>npm install -g hexo-cli
 </code></pre>
 <hr>
-<h2 id="如果你是mac用户需要sudo（管理员权限）来操作，例如："><a href="#如果你是mac用户需要sudo（管理员权限）来操作，例如：" class="headerlink" title="如果你是mac用户需要sudo（管理员权限）来操作，例如："></a>如果你是mac用户需要<strong>sudo（管理员权限）</strong>来操作，例如：</h2><pre><code>sudo npm install -g hexo-cli
+<p>如果你是mac用户需要<strong>sudo（管理员权限）</strong>来操作，例如：</p>
+<hr>
+<pre><code>sudo npm install -g hexo-cli
 </code></pre>
 <hr>
 <p>安装时长视网络环境而定，可以考虑挂加速器，请耐心等待</p>
-<h2 id="3-link（链接）github"><a href="#3-link（链接）github" class="headerlink" title="3.link（链接）github"></a>3.link（链接）github</h2><h2 id="首先你已经有了一个github的免费账户并且完成了一系列验证。然后回到你的blog文件夹，依旧是右键Git-Bash-Here进入到terminal，设置用户名和邮箱；"><a href="#首先你已经有了一个github的免费账户并且完成了一系列验证。然后回到你的blog文件夹，依旧是右键Git-Bash-Here进入到terminal，设置用户名和邮箱；" class="headerlink" title="首先你已经有了一个github的免费账户并且完成了一系列验证。然后回到你的blog文件夹，依旧是右键Git Bash Here进入到terminal，设置用户名和邮箱；"></a>首先你已经<strong>有了一个github的免费账户并且完成了一系列验证。</strong><br>然后回到你的blog文件夹，依旧是右键<code>Git Bash Here</code>进入到terminal，<strong>设置用户名和邮箱；</strong></h2><pre><code>git config --global user.name &quot;你的gitHub 用户名&quot;
+<h2 id="3-link（链接）github"><a href="#3-link（链接）github" class="headerlink" title="3.link（链接）github"></a>3.link（链接）github</h2><p>首先你已经有了一个<strong>github的免费账户并且完成了一系列验证。</strong><br>然后回到你的blog文件夹，依旧是右键<code>Git Bash Here</code>进入到terminal，<strong>设置用户名和邮箱；</strong></p>
+<hr>
+<pre><code>git config --global user.name &quot;你的gitHub 用户名&quot;
 git config --global user.email &quot;你的gitHub 邮箱&quot;
 （替换双引号内容）
 </code></pre>
