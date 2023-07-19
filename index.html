@@ -155,6 +155,66 @@
     
     
     <article
+  id="post-blog-2"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2023/07/12/blog-2/"
+    >各种使用时新晋语法函数</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2023/07/12/blog-2/" class="article-date">
+  <time datetime="2023-07-12T01:59:30.000Z" itemprop="datePublished">2023-07-12</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a> / <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95%E7%B1%BB/">算法类</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="new-int-m"><a href="#new-int-m" class="headerlink" title="new int[m]"></a>new int[m]</h1><p>例：p[n]为struct,有*time，p[n].time&#x3D;new int[m],time变成int 数组，有m项</p>
+<h1 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h1><p>for(auto t:res)cout&lt;&lt;t&lt;&lt;’ ‘;<br>auto res&#x3D;get_di(X);【vector<int> get_di(int n)】</p>
+<h1 id="for（int-i-x3D-n-1-i-i–）"><a href="#for（int-i-x3D-n-1-i-i–）" class="headerlink" title="for（int i&#x3D;n-1;~i;i–）"></a>for（int i&#x3D;n-1;~i;i–）</h1><p>在for循环中，<del>i的作用是判断i是否为-1。因为-1的二进制表示是全1，所以</del>(-1)就是全0，也就是0。所以当i等于-1时，~i就为0，循环就会终止。这样可以避免使用&#x3D;&#x3D;或!&#x3D;运算符来比较i和-1。</p>
+<h1 id="const-double-eps-x3D-1e-6"><a href="#const-double-eps-x3D-1e-6" class="headerlink" title="const double eps&#x3D;1e-6;"></a>const double eps&#x3D;1e-6;</h1><p>判断浮点数是否为零或者小于零时由于浮点数特性需要判断它是否小于一个很小的数</p>
+<h1 id="struct结构体内比较格式"><a href="#struct结构体内比较格式" class="headerlink" title="struct结构体内比较格式"></a>struct结构体内比较格式</h1><h1 id="amp-的传递区别"><a href="#amp-的传递区别" class="headerlink" title="* &amp;的传递区别"></a>* &amp;的传递区别</h1><h1 id="vector传递-高精度计算"><a href="#vector传递-高精度计算" class="headerlink" title="vector传递 高精度计算"></a>vector<int>传递 高精度计算</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; mul(vector&lt;int&gt; &amp;A, int b)</span><br><span class="line">&#123;</span><br><span class="line">    vector&lt;int&gt; C;</span><br><span class="line">    int t = 0;</span><br><span class="line">    for (int i = 0; i &lt; A.size() || t; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        if (i &lt; A.size()) t += A[i] * b;</span><br><span class="line">        C.push_back(t % 10);</span><br><span class="line">        t /= 10;</span><br><span class="line">    &#125;</span><br><span class="line">    while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();</span><br><span class="line">    return C;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    string a;</span><br><span class="line">    int b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    vector&lt;int&gt; A;</span><br><span class="line">    for (int i = a.size() - 1; i &gt;= 0; i -- ) A.push_back(a[i] - &#x27;0&#x27;);</span><br><span class="line">    auto C = mul(A, b);</span><br><span class="line">    for (int i = C.size() - 1; i &gt;= 0; i -- ) printf(&quot;%d&quot;, C[i]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="lower-bound-stk-begin-stk-end-arr-i-x3D-arr-i"><a href="#lower-bound-stk-begin-stk-end-arr-i-x3D-arr-i" class="headerlink" title="*lower_bound(stk.begin(), stk.end(), arr[i]) &#x3D; arr[i]"></a>*lower_bound(stk.begin(), stk.end(), arr[i]) &#x3D; arr[i]</h1><p>它返回一个指向范围 [first, last) 中第一个不小于 val 的元素的迭代器<br>可以替代二分查找</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/acm/" rel="tag">acm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/" rel="tag">训练记录</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+   
+  
+</article>
+
+    
+    <article
   id="post-blog"
   class="article article-type-post"
   itemscope
