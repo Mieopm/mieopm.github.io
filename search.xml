@@ -78,7 +78,7 @@ git config --global user.email &quot;你的gitHub 邮箱&quot;
   </entry>
   <entry>
     <title>各种使用时新晋语法函数</title>
-    <url>/2023/07/12/c++%20grammer%20record%20/</url>
+    <url>/2023/07/12/c++_grammer_record/</url>
     <content><![CDATA[<h1 id="new-int-m"><a href="#new-int-m" class="headerlink" title="new int[m]"></a>new int[m]</h1><p>例：p[n]为struct,有*time，p[n].time&#x3D;new int[m],time变成int 数组，有m项</p>
 <h1 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h1><p>for(auto t:res)cout&lt;&lt;t&lt;&lt;’ ‘;<br>auto res&#x3D;get_di(X);【vector<int> get_di(int n)】</p>
 <h1 id="for（int-i-x3D-n-1-i-i–）"><a href="#for（int-i-x3D-n-1-i-i–）" class="headerlink" title="for（int i&#x3D;n-1;~i;i–）"></a>for（int i&#x3D;n-1;~i;i–）</h1><p>在for循环中，<del>i的作用是判断i是否为-1。因为-1的二进制表示是全1，所以</del>(-1)就是全0，也就是0。所以当i等于-1时，~i就为0，循环就会终止。这样可以避免使用&#x3D;&#x3D;或!&#x3D;运算符来比较i和-1。</p>
@@ -117,7 +117,7 @@ git config --global user.email &quot;你的gitHub 邮箱&quot;
   </entry>
   <entry>
     <title>Summer training daily record 7.12~7.18</title>
-    <url>/2023/07/12/train%20record_7.12/</url>
+    <url>/2023/07/12/train_record_7.12/</url>
     <content><![CDATA[<h1 id="图论构造-Tenzing-and-His-Animal-Friends"><a href="#图论构造-Tenzing-and-His-Animal-Friends" class="headerlink" title="图论构造 Tenzing and His Animal Friends"></a>图论构造 Tenzing and His Animal Friends</h1><p><a href="https://codeforces.com/problemset/problem/1842/D">https://codeforces.com/problemset/problem/1842/D</a><br><strong>看不懂的题面部分</strong>：u,v,y的意义。<br>理解为u或者v分开单独玩的时间不超过y。一共m组.</p>
 <p>思路总结：<br>求最长时间的情况下，由于n一定不参加聚会，所以和n关联的m最大可以参加v(m-&gt;n)的时间，类推每个点最长参加时长为它到n的最短路。当1,n不相连则无上限（样例如果没有2 5 1 那么2 3可以无限参加派对）。</p>
 <p>接着构造聚会的方案。di为1-&gt;i的最短路，仅在di-&gt;dn时间选择i,使得（u,v）满足du-dv&lt;&#x3D;y。即每次选出最短路的点，之后加入</p>
