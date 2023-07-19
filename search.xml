@@ -115,4 +115,99 @@ git config --global user.email &quot;你的gitHub 邮箱&quot;
         <tag>训练记录</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Summer training daily record 7.12~7.18</title>
+    <url>/2023/07/12/train%20record_7.12/</url>
+    <content><![CDATA[<h1 id="图论构造-Tenzing-and-His-Animal-Friends"><a href="#图论构造-Tenzing-and-His-Animal-Friends" class="headerlink" title="图论构造 Tenzing and His Animal Friends"></a>图论构造 Tenzing and His Animal Friends</h1><p><a href="https://codeforces.com/problemset/problem/1842/D">https://codeforces.com/problemset/problem/1842/D</a><br><strong>看不懂的题面部分</strong>：u,v,y的意义。<br>理解为u或者v分开单独玩的时间不超过y。一共m组.</p>
+<p>思路总结：<br>求最长时间的情况下，由于n一定不参加聚会，所以和n关联的m最大可以参加v(m-&gt;n)的时间，类推每个点最长参加时长为它到n的最短路。当1,n不相连则无上限（样例如果没有2 5 1 那么2 3可以无限参加派对）。</p>
+<p>接着构造聚会的方案。di为1-&gt;i的最短路，仅在di-&gt;dn时间选择i,使得（u,v）满足du-dv&lt;&#x3D;y。即每次选出最短路的点，之后加入</p>
+<p>另一个是dijkstra构造，即每次取最短点。设存在两个集合S,T，集合S 中为还能参加聚会的点，集合 T 中为不能再参加聚会的点。最初 T 中仅n 一个元素。联系到上述每个点最大参会总时长的得出方式，我们每次从 S 中选择一个参会时间上限最短的点 x，让S 中的所有点都参加一次聚会，时长为 x 的参会时间上限。一直这样进行下去，直到点 1不在 S 当中。</p>
+<h1 id="CF876-div2-C-Insert-Zero-and-Invert-Prefix-偏移量-贪心"><a href="#CF876-div2-C-Insert-Zero-and-Invert-Prefix-偏移量-贪心" class="headerlink" title="CF876(div2)-C-Insert Zero and Invert Prefix(偏移量+贪心)"></a>CF876(div2)-C-Insert Zero and Invert Prefix(偏移量+贪心)</h1><p><a href="https://codeforces.com/problemset/problem/1839/C">https://codeforces.com/problemset/problem/1839/C</a></p>
+<p>考察的部分：特殊情况贪心+偏移量<br>具体解答<a href="https://zhuanlan.zhihu.com/p/634514907">https://zhuanlan.zhihu.com/p/634514907</a><br><strong>偏移量cost解释</strong>：当做逆操作时候，数组前面的书均取逆，cost记录奇偶次，并且与原数组的数操作得出数现在的状态</p>
+<p>该评论区有提及从左向右扫的逆向思路：形如1111……0的串，删去最后的0并反转所有的1<br>不断重复<br>例如<br>    1 0 0 1 1 0<br>      x<br>    0 0 1 1 0<br>            x<br>    1 1 0 0<br>        x<br>    0 0 0 </p>
+<ul>
+<li><input disabled="" type="checkbox"> 但是怎么变成代码呢emmmm<br>拆解操作思路<br><a href="https://zhuanlan.zhihu.com/p/636927276">https://zhuanlan.zhihu.com/p/636927276</a></li>
+</ul>
+<h1 id="CF-884-vp"><a href="#CF-884-vp" class="headerlink" title="CF 884 vp"></a>CF 884 vp</h1><h1 id="acwing-数学部分补充"><a href="#acwing-数学部分补充" class="headerlink" title="acwing 数学部分补充"></a>acwing 数学部分补充</h1><p>卡特兰数<br><a href="https://leetcode.cn/circle/article/lWYCzv/">https://leetcode.cn/circle/article/lWYCzv/</a></p>
+<h4 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E4%B8%80%E3%80%81%E5%BC%95%E8%A8%80"></a>一、引言</h4><p>卡特兰数（Catalan number）是<strong>组合数学</strong>中一个常出现在各种<strong>计数问题</strong>中的<strong>数列</strong>。</p>
+<p>数列的前几项为：<code>1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862，...</code></p>
+<p>本文将会选取几个经典的卡特兰问题，难度先易后难，带领读者逐个击破解决，最后给出相关的解题模板。</p>
+<h4 id="二、经典问题"><a href="#二、经典问题" class="headerlink" title="二、经典问题"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E4%BA%8C%E3%80%81%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98"></a>二、经典问题</h4><h5 id="2-1-进出栈序列"><a href="#2-1-进出栈序列" class="headerlink" title="2.1 进出栈序列"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#21-%E8%BF%9B%E5%87%BA%E6%A0%88%E5%BA%8F%E5%88%97"></a>2.1 进出栈序列</h5><p>这是一道<strong>最经典</strong>的入门级卡特兰数题目，如果能把这题看懂，相信后面的题目也能迎刃而解。</p>
+<p><strong>题目描述</strong></p>
+<p>n 个元素进栈序列为：<code>1，2，3，4，...，n</code>，则有多少种出栈序列</p>
+<p><strong>思路</strong></p>
+<p>我们将进栈表示为 +1，出栈表示为 -1，则 1 3 2 的出栈序列可以表示为：<code>+1 -1 +1 +1 -1 -1</code>。</p>
+<p><img src="https://pic.leetcode-cn.com/ed47ff3bb463fd4635707d47b2dbec7034141f798fb18b514170f4df39e9dd16-frame_00003.png" alt="frame_00003.png"></p>
+<p>根据栈本身的特点，每次出栈的时候，必定之前有元素入栈，即对于每个 -1 前面都有一个 +1 相对应。因此，出栈序列的<strong>所有前缀和</strong>必然大于等于 0，并且 +1 的数量<strong>等于</strong> -1 的数量。</p>
+<p>接下来让我们观察一下 n &#x3D; 3 的一种出栈序列：<code>+1 -1 -1 +1 -1 +1</code>。序列前三项和小于 0，显然这是个非法的序列。</p>
+<p>如果将<strong>第一个</strong>前缀和小于 0 的前缀，即前三项元素都进行取反，就会得到：<code>-1 +1 +1 +1 -1 +1</code>。此时有 <code>3 + 1</code> 个 +1 以及 <code>3 - 1</code> 个 -1。</p>
+<p>因为这个小于 0 的前缀和必然是 -1，且 -1 比 +1 多一个，取反后，-1 比 +1 少一个，则 +1 变为 n + 1 个，且 -1 变为 n - 1 个。进一步推广，对于 n 元素的每种非法出栈序列，都会对应一个含有 <code>n + 1</code> 个 +1 以及 <code>n - 1</code> 个 -1 的序列。</p>
+<p>如何证明这两种序列是一一对应的？</p>
+<p>假设非法序列为 A，对应的序列为 B。每个 A 只有一个”<strong>第一个前缀和小于 0 的前缀</strong>“，所以每个 A 只能产生一个 B。而每个 B 想要还原到 A，就需要找到”<strong>第一个前缀和大于 0 的前缀</strong>“，显然 B 也只能产生一个 A。</p>
+<p><img src="https://pic.leetcode-cn.com/846c04b60f59ab17deffce8e6c217732106f6865fb29d274665b1d956b47b8bd-frame_00011.png" alt="frame_00011.png"></p>
+<p>每个 B 都有 <code>n + 1</code> 个 +1 以及 <code>n - 1</code> 个 -1，因此 B 的数量为 C2nn+1C_{2n}^{n+1}，相当于在长度为 2n 的序列中找到 <code>n + 1</code> 个位置存放 +1。相应的，非法序列的数量也就等于 C2nn+1C_{2n}^{n+1}。</p>
+<p>出栈序列的总数量共有 C2nnC_{2n}^{n}，因此，合法的出栈序列的数量为 C2nn−C2nn+1=C2nnn+1C_{2n}^{n} - C_{2n}^{n+1} &#x3D; \frac{C_{2n}^n}{n + 1}。</p>
+<p>此时我们就得到了卡特兰数的通项 C2nnn+1\frac{C_{2n}^n}{n + 1}，至于具体如何计算结果将会在后面进行介绍。</p>
+<h5 id="2-2-括号序列"><a href="#2-2-括号序列" class="headerlink" title="2.2 括号序列"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#22-%E6%8B%AC%E5%8F%B7%E5%BA%8F%E5%88%97"></a>2.2 括号序列</h5><p><strong>题目描述</strong></p>
+<p>n 对括号，则有多少种 “括号匹配” 的括号序列</p>
+<p><img src="https://pic.leetcode-cn.com/cde681df7861e934f517b6996ceabe7be7b9dbc6310f69ea6166461920272643-frame_00006.png" alt="frame_00006.png"></p>
+<p><strong>思路</strong></p>
+<p>左括号看成 +1，右括号看成 -1，那么就和上题的进出栈一样，共有 C2nnn+1\frac{C_{2n}^n}{n + 1} 种序列。</p>
+<h5 id="2-3-二叉树"><a href="#2-3-二叉树" class="headerlink" title="2.3 二叉树"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#23-%E4%BA%8C%E5%8F%89%E6%A0%91"></a>2.3 二叉树</h5><p><strong>题目描述</strong></p>
+<p><code>n + 1</code> 个叶子节点能够构成多少种形状不同的（国际）满二叉树</p>
+<p>（国际）满二叉树定义：如果一棵二叉树的结点要么是叶子结点，要么它有两个子结点，这样的树就是满二叉树。</p>
+<p><img src="https://pic.leetcode-cn.com/69112f87285d0db7f02e27a3794a92a9191880286f8019912858c4939999272b-frame_00008.png" alt="frame_00008.png"></p>
+<p><strong>思路</strong></p>
+<p>使用深度优先搜索这个满二叉树，向左扩展时标记为 +1，向右扩展时标记为 -1。</p>
+<p>由于每个非叶子节点都有两个左右子节点，所有它必然会先向左扩展，再向右扩展。总体下来，左右扩展将会形成匹配，即变成进出栈的题型。<code>n + 1</code> 个叶子结点会有 2n 次扩展，构成 C2nnn+1\frac{C_{2n}^n}{n + 1} 种形状不同的满二叉树。</p>
+<p><img src="https://pic.leetcode-cn.com/2c18d56f21ce18d9c25adb5645aa9557d21fc2bbcdad86e80c894703199761fb-frame_00009.png" alt="frame_00009.png"></p>
+<h5 id="2-4-电影购票"><a href="#2-4-电影购票" class="headerlink" title="2.4 电影购票"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#24-%E7%94%B5%E5%BD%B1%E8%B4%AD%E7%A5%A8"></a>2.4 电影购票</h5><p><strong>题目描述</strong></p>
+<p>电影票一张 50 coin，且售票厅没有 coin。m 个人各自持有 50 coin，n 个人各自持有 100 coin。</p>
+<p>则有多少种排队方式，可以让每个人都买到电影票。</p>
+<p><strong>思路</strong></p>
+<p>持有 50 coin 的人每次购票时不需要找零，并且可以帮助后面持有 100 coin 的人找零；而对于持有 100 coin 的人每次购票时需要找零，但 100 coin 对后面的找零没有任何作用。</p>
+<p>因此，相当于每个持有 100 coin 的人都需要和一个持有 50 coin 的人进行匹配。我们将持有 50 coin 的标记为 +1，持有 100 coin 的标记为 -1，此时又回到了进出栈问题。</p>
+<p>不同的是，m 并一定等于 n，且排队序列是一种排列，需要考虑先后顺序，例如各自持有 50 coin 的甲和乙的前后关系会造成两种不同的排队序列。所以，将会有 (Cm+nm−Cm+nm+1)∗m!∗n!(C_{m+n}^{m}-C_{m+n}^{m+1})*m!*n!</p>
+<p>第二项为什么是 Cm+nm+1C_{m+n}^{m+1}，其实很简单，我们每次把第一个前缀小于0 的前缀取反后，会造成 +1 多了一个而 -1 少了一个。这里 +1 有 m 个，-1 有 n 个，取反后 +1 变成 <code>m + 1</code> 个，-1 变成 <code>n - 1</code> 个，总和不变。</p>
+<h4 id="三、解题模板"><a href="#三、解题模板" class="headerlink" title="三、解题模板"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E4%B8%89%E3%80%81%E8%A7%A3%E9%A2%98%E6%A8%A1%E6%9D%BF"></a>三、解题模板</h4><p>最后我们需要来计算一下卡特兰数的通项 Cn=C2nnn+1C_{n} &#x3D; \frac{C_{2n}^n}{n + 1}</p>
+<p>卡特兰数满足以下递推式：</p>
+<p>C1=1C_{1}&#x3D;1，Cn=Cn−14∗n−2n+1C_{n} &#x3D; C_{n-1}\frac{4*n-2}{n+1}（证明从略）</p>
+<p>因此，我们可以通过递推来得到第 n 个卡特兰数。</p>
+<p><strong>代码</strong></p>
+<ul>
+<li>Java</li>
+<li>Python</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import java.math.BigInteger;</span><br><span class="line">// 打印前 n 个卡特兰数</span><br><span class="line">int n = 20;</span><br><span class="line">BigInteger ans = BigInteger.valueOf(1);</span><br><span class="line">System.out.println(&quot;1:&quot; + ans.toString());</span><br><span class="line">BigInteger four = BigInteger.valueOf(4); </span><br><span class="line">BigInteger one = BigInteger.valueOf(1);</span><br><span class="line">BigInteger two = BigInteger.valueOf(2);</span><br><span class="line">for (int i = 2; i &lt;= n; i++) &#123;</span><br><span class="line">    BigInteger bi = BigInteger.valueOf(i);</span><br><span class="line">    ans = ans.multiply(four.multiply(bi).subtract(two)).divide(bi.add(one));</span><br><span class="line">    System.out.println(i + &quot;:&quot; + ans.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 打印前 n 个卡特兰数</span><br><span class="line">ans, n = 1, 20</span><br><span class="line">print(&quot;1:&quot; + str(ans))</span><br><span class="line">for i in range(2, n + 1):</span><br><span class="line">    ans = ans * (4 * i - 2) // (i + 1)</span><br><span class="line">    print(str(i) + &quot;:&quot; + str(ans))</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，由于卡特兰数增长速度较快，当 n 等于 17 时，卡特兰数将会超过 int 最大值，造成溢出（Python 除外）。对于 Java 语言来说，可以使用 BigInteger 来计算大整数。</p>
+<p>那如果 +1 的数量不等于 -1 的数量呢，如前面提到的电影购票问题。此时 Cn=Cm+nm−Cm+nm+1C_{n}&#x3D;C_{m+n}^{m}-C_{m+n}^{m+1}，不是卡特兰数的通项，也就不能够继续使用原有的递推性质。</p>
+<p>那就直接推呗。</p>
+<p>Cn=Cm+nm−Cm+nm+1=(m+n)!m!∗n!−(m+n)!(m+1)!∗(n−1)!=(m+n)!m!∗n!−(m+n)!∗1m+1∗nm!∗n!=(m+n)!m!∗n!∗(1−1m+1∗n)=(m+n)!m!∗n!∗m+1−nm+1\begin{aligned}C_{n}&amp;&#x3D;C_{m+n}^{m}-C_{m+n}^{m+1}\\ &amp;&#x3D;\frac{(m+n)!}{m!*n!}-\frac{(m+n)!}{(m+1)!*(n-1)!}\\ &amp;&#x3D;\frac{(m+n)!}{m!*n!}-\frac{(m+n)!*\frac{1}{m+1}*n}{m!*n!}\\ &amp;&#x3D;\frac{(m+n)!}{m!*n!}*(1-\frac{1}{m+1}*n)\\ &amp;&#x3D;\frac{(m+n)!}{m!*n!}*\frac{m+1-n}{m+1}\\ \end{aligned}</p>
+<p>一般而言，为了降低难度，题目会要求我们计算排列数量，所以 An=Cn∗m!∗n!=(m+n)!∗m+1−nm+1A_{n}&#x3D;C_{n}*m!*n!&#x3D;(m+n)!*\frac{m+1-n}{m+1}</p>
+<h4 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BB%93"></a>四、总结</h4><p>基本上所有的卡特兰数问题经过一定的转换都可以还原成进出栈问题。因此，只要我们能够学会进出栈问题的解法，无论问题再怎么变化，本质还是不变的。</p>
+<p>卡特兰数问题中都会存在一种匹配关系，如进出栈匹配，括号匹配等，一旦计数问题中存在这种关系，那我们就需要去考虑这是否是卡特兰数问题。此外，我们还可以记住序列前四项：<code>1, 1, 2, 5</code>，这些将有利于我们联想到卡特兰数。</p>
+<p>目前，LeetCode 已经出现一道卡特兰数问题 <a href="https://leetcode-cn.com/problems/handshakes-that-dont-cross/">1259. 不相交的握手</a>，这也是这篇文章编写的原因之一。同时，近年某巴巴，某讯的笔试题中也有出现过这类题目，无非将背景换成买烧饼，借书排队等，相信这些都难不倒读者。</p>
+<h4 id="五、扩展"><a href="#五、扩展" class="headerlink" title="五、扩展"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E4%BA%94%E3%80%81%E6%89%A9%E5%B1%95"></a>五、扩展</h4><p>最后留一道比较有意思的卡特兰数问题，欢迎读者留言，提出自己的看法。</p>
+<p>8 个高矮不同的人需要排成两队，每队 4 个人。其中，每排都是从低到高排列，且第二排的第 i 个人比第一排中第 i 个人高，则有多少种排队方式。</p>
+<hr>
+<p>以 1 2 3 4 5 6 7 8 表示8个人升高，陆续为这8个人排队，排到第一队记为0，排到第二队记为1.<br>观察两个界，即 00001111 和 01010101分别对应排队：<br>观察紧迫界，01 01 01 01 ，拥有特征（1） 任意前缀 0 的个树大于1的个数，特征（2）每两个作为一对，有左0右1的特征。具备卡特兰数特征。1可以和后面的0交换位置，1不可以和前面的0交换位置。解即卡特兰数</p>
+<h1 id="01背包一维优化倒序更新问题"><a href="#01背包一维优化倒序更新问题" class="headerlink" title="01背包一维优化倒序更新问题"></a>01背包一维优化倒序更新问题</h1><p>一维01背包为什么倒序：</p>
+<p>我们每次计算dp[j] (即dp[i][j]) 的时候都会需要dp[j-w[i]] (即dp[i-1][j-w[i]])的值。因为j-w[i]比j小，所以如果我们正序计算，那么dp[j-w[i]]就已经更新了 (即dp[i][j-w[i]])，与状态转移方程不符。</p>
+<p>如果重量是负数，怎么处理？：</p>
+<p>如果重量是负数，那么上述状态转移方程中j-w[i]就会比j大，为避免先更新dp[j-w[i]]我们只能正序更新数组。<br>example:[<a href="http://poj.org/problem?id=2184%5D">http://poj.org/problem?id=2184]</a><br>题意：给你n头奶牛，每头奶牛都有一个智商和情商，在选出的x头奶牛智商和与情商和都大于等于0的情况下求智商总和与情商总和的最大值。</p>
+<p>思路：以智商或者情商为价值，另一个为重量，就是典型的01背包问题，首先重量为正数时就是正常的01背包，但重量为负数时由于下标不能为负，我们需要增加数组长度。也就是把坐标0向正方向移动：-100000…0…100000 –&gt; 0…100000…200000。dp[100000]设为0，最后扫一遍正数区间[100000, 200001]更新一个最大值即可。<br>N, H &#x3D; 200000, 100000<br>dp &#x3D; [-float(“inf”)] * (N+1)<br>dp[H] &#x3D; 0<br>w &#x3D; [-5, 8, 6, 2, -8]<br>v &#x3D; [7, -6, -3, 1, -5]<br>n &#x3D; 5</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">for i in range(n):</span><br><span class="line">    if w[i] &gt; 0://把第二层循环遍历展开分类讨论</span><br><span class="line">        for j in range(N, w[i]-1, -1):</span><br><span class="line">            dp[j] = max(dp[j], dp[j-w[i]] + v[i])</span><br><span class="line">    else:</span><br><span class="line">        for j in range(0, N+w[i]+1):</span><br><span class="line">            dp[j] = max(dp[j], dp[j-w[i]] + v[i])</span><br><span class="line"></span><br><span class="line">res = 0</span><br><span class="line">for j in range(H, N+1)://在正情况中遍历最大</span><br><span class="line">    if dp[j] &gt;= 0:</span><br><span class="line">        res = max(res, dp[j]+j-H)//情商+智商和-前移的1000</span><br><span class="line">print(res)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+        <category>算法类</category>
+      </categories>
+      <tags>
+        <tag>acm</tag>
+        <tag>算法</tag>
+        <tag>训练记录</tag>
+      </tags>
+  </entry>
 </search>
