@@ -12,10 +12,35 @@
 <h1 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h1><p>for(auto t:res)cout&lt;&lt;t&lt;&lt;’ ‘;<br>auto res&#x3D;get_di(X);【vector<int> get_di(int n)】</p>
 <h1 id="for（int-i-x3D-n-1-i-i–）"><a href="#for（int-i-x3D-n-1-i-i–）" class="headerlink" title="for（int i&#x3D;n-1;~i;i–）"></a>for（int i&#x3D;n-1;~i;i–）</h1><p>在for循环中，<del>i的作用是判断i是否为-1。因为-1的二进制表示是全1，所以</del>(-1)就是全0，也就是0。所以当i等于-1时，~i就为0，循环就会终止。这样可以避免使用&#x3D;&#x3D;或!&#x3D;运算符来比较i和-1。</p>
 <h1 id="const-double-eps-x3D-1e-6"><a href="#const-double-eps-x3D-1e-6" class="headerlink" title="const double eps&#x3D;1e-6;"></a>const double eps&#x3D;1e-6;</h1><p>判断浮点数是否为零或者小于零时由于浮点数特性需要判断它是否小于一个很小的数</p>
-<h1 id="struct结构体内比较格式"><a href="#struct结构体内比较格式" class="headerlink" title="struct结构体内比较格式"></a>struct结构体内比较格式</h1><h1 id="amp-的传递区别"><a href="#amp-的传递区别" class="headerlink" title="* &amp;的传递区别"></a>* &amp;的传递区别</h1><h1 id="vector传递-高精度计算"><a href="#vector传递-高精度计算" class="headerlink" title="vector传递 高精度计算"></a>vector<int>传递 高精度计算</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vector&lt;int&gt; mul(vector&lt;int&gt; &amp;A, int b)</span><br><span class="line">&#123;</span><br><span class="line">    vector&lt;int&gt; C;</span><br><span class="line">    int t = 0;</span><br><span class="line">    for (int i = 0; i &lt; A.size() || t; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        if (i &lt; A.size()) t += A[i] * b;</span><br><span class="line">        C.push_back(t % 10);</span><br><span class="line">        t /= 10;</span><br><span class="line">    &#125;</span><br><span class="line">    while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();</span><br><span class="line">    return C;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    string a;</span><br><span class="line">    int b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    vector&lt;int&gt; A;</span><br><span class="line">    for (int i = a.size() - 1; i &gt;= 0; i -- ) A.push_back(a[i] - &#x27;0&#x27;);</span><br><span class="line">    auto C = mul(A, b);</span><br><span class="line">    for (int i = C.size() - 1; i &gt;= 0; i -- ) printf(&quot;%d&quot;, C[i]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="struct结构体内比较格式"><a href="#struct结构体内比较格式" class="headerlink" title="struct结构体内比较格式"></a>struct结构体内比较格式</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">    <span class="type">int</span> l,r;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> node &amp;w)<span class="type">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> r&lt;w.r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="amp-的传递区别"><a href="#amp-的传递区别" class="headerlink" title="* &amp;的传递区别"></a>* &amp;的传递区别</h1><h1 id="vector传递-高精度计算"><a href="#vector传递-高精度计算" class="headerlink" title="vector传递 高精度计算"></a>vector<int>传递 高精度计算</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vector&lt;int&gt; mul(vector&lt;int&gt; &amp;A, int b)</span><br><span class="line">&#123;</span><br><span class="line">    vector&lt;int&gt; C;</span><br><span class="line">    int t = 0;</span><br><span class="line">    for (int i = 0; i &lt; A.size() || t; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        if (i &lt; A.size()) t += A[i] * b;</span><br><span class="line">        C.push_back(t % 10);</span><br><span class="line">        t /= 10;</span><br><span class="line">    &#125;</span><br><span class="line">    while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();</span><br><span class="line">    return C;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    string a;</span><br><span class="line">    int b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    vector&lt;int&gt; A;</span><br><span class="line">    for (int i = a.size() - 1; i &gt;= 0; i -- ) A.push_back(a[i] - &#x27;0&#x27;);</span><br><span class="line">    auto C = mul(A, b);</span><br><span class="line">    for (int i = C.size() - 1; i &gt;= 0; i -- ) printf(&quot;%d&quot;, C[i]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h1 id="lower-bound-stk-begin-stk-end-arr-i-x3D-arr-i"><a href="#lower-bound-stk-begin-stk-end-arr-i-x3D-arr-i" class="headerlink" title="*lower_bound(stk.begin(), stk.end(), arr[i]) &#x3D; arr[i]"></a>*lower_bound(stk.begin(), stk.end(), arr[i]) &#x3D; arr[i]</h1><p>它返回一个指向范围 [first, last) 中第一个不小于 val 的元素的迭代器<br>可以替代二分查找</p>
-]]></content>
+<h1 id="priority-queue-lt-int-vector-greater-gt-heap"><a href="#priority-queue-lt-int-vector-greater-gt-heap" class="headerlink" title="priority_queue&lt;int,vector,greater&gt; heap;"></a>priority_queue&lt;int,vector<int>,greater<int>&gt; heap;</h1><p>优先队列是一种特殊的队列，它的元素被赋予优先级，当访问元素时，具有最高级优先级的元素先被访问12。在C++中，priority_queue是一个容器适配器，它提供了常数时间查找默认情况下最大（或最小）元素的功能，但以对数时间为代价进行插入和提取。<br>        empty()   如果队列为空返回真</p>
+<pre><code>    pop()       删除队顶元素
+
+    push()     入队一个元素
+
+    size()      返回优先队列中拥有的元素个数
+
+    top()        返回优先队列队顶元素
+</code></pre>
+<p>默认情况下，priority_queue是一个大根堆，这意味着根节点的值大于或等于子节点的值,<br>如果想要使用小根堆，可以将priority_queue的第三个参数设置为greater<int>。</p>
+<p>大根堆是一种完全二叉树，其中所有父节点的值都比左右孩子的值大。小根堆与大根堆相反，其中所有父节点的值都比左右孩子的值小。<br>大根堆例如：<br>          10<br>        &#x2F;    <br>       8      7<br>     &#x2F;   \   &#x2F;<br>    6     4 3</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">是默认的大根堆实现，<span class="built_in">top</span>()是当前优先队列的最大值</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> my_array[<span class="number">10</span>] = &#123;<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-8</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">-7</span>,<span class="number">-6</span>&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    priority_queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        q.<span class="built_in">push</span>(my_array[i]);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;order: &quot;</span> &lt;&lt; q.<span class="built_in">top</span>() &lt;&lt; endl;</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>   小根堆例如<br>          1<br>        &#x2F;    <br>       2      3<br>     &#x2F;   \   &#x2F;<br>    4     5 6</p>
+<h1 id="cout-lt-lt-fixed-lt-lt-setprecison-15-lt-lt-dp-a"><a href="#cout-lt-lt-fixed-lt-lt-setprecison-15-lt-lt-dp-a" class="headerlink" title="cout&lt;&lt;fixed&lt;&lt;setprecison(15)&lt;&lt;dp[a]"></a>cout&lt;&lt;fixed&lt;&lt;setprecison(15)&lt;&lt;dp[a]</h1><p>精确输出小数点后几位</p>
+<h1 id="while-cin-gt-gt-a-gt-gt-b-gt-gt-c-a-b-c-w-a-b-x3D-c"><a href="#while-cin-gt-gt-a-gt-gt-b-gt-gt-c-a-b-c-w-a-b-x3D-c" class="headerlink" title="while (cin &gt;&gt; a &gt;&gt; b &gt;&gt; c, a || b || c)w[a][b] &#x3D; c;"></a>while (cin &gt;&gt; a &gt;&gt; b &gt;&gt; c, a || b || c)w[a][b] &#x3D; c;</h1><p>用于输入多组数据且全为0时表示结束的输入</p>
+<h1 id="lower-bound-、upper-bound-、equal-range-以及-binary-search"><a href="#lower-bound-、upper-bound-、equal-range-以及-binary-search" class="headerlink" title="lower_bound()、upper_bound()、equal_range() 以及 binary_search()"></a>lower_bound()、upper_bound()、equal_range() 以及 binary_search()</h1><h2 id="lower-bound"><a href="#lower-bound" class="headerlink" title="lower_bound()"></a><em>lower_bound()</em></h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">在 [first, last) 区域内查找不小于 val 的元素</span></span><br><span class="line"><span class="comment">ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last,</span></span><br><span class="line"><span class="comment">                             const T&amp; val);</span></span><br><span class="line"><span class="comment">//在 [first, last) 区域内查找第一个不符合 comp 规则的元素</span></span><br><span class="line"><span class="comment">ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last,</span></span><br><span class="line"><span class="comment">                             const T&amp; val, Compare comp);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>     <span class="comment">// std::cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>    <span class="comment">// std::lower_bound</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span>       <span class="comment">// std::vector</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//以普通函数的方式定义查找规则</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">mycomp</span><span class="params">(<span class="type">int</span> i,<span class="type">int</span> j)</span> </span>&#123; <span class="keyword">return</span> i&gt;j; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//以函数对象的形式定义查找规则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">mycomp2</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">const</span> <span class="type">int</span>&amp; i, <span class="type">const</span> <span class="type">int</span>&amp; j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i&gt;j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">5</span>] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line">    <span class="comment">//从 a 数组中找到第一个不小于 3 的元素</span></span><br><span class="line">    <span class="type">int</span> *p = <span class="built_in">lower_bound</span>(a, a + <span class="number">5</span>, <span class="number">3</span>);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;*p = &quot;</span> &lt;&lt; *p &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; myvector&#123; <span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span> &#125;;</span><br><span class="line">    <span class="comment">//根据 mycomp2 规则，从 myvector 容器中找到第一个违背 mycomp2 规则的元素</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;::iterator iter = <span class="built_in">lower_bound</span>(myvector.<span class="built_in">begin</span>(), myvector.<span class="built_in">end</span>(),<span class="number">3</span>,<span class="built_in">mycomp2</span>());</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;*iter = &quot;</span> &lt;&lt; *iter;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="upper-bound"><a href="#upper-bound" class="headerlink" title="upper_bound()"></a><em>upper_bound()</em></h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">//查找[first, last)区域中第一个大于 val 的元素。</span></span><br><span class="line"><span class="comment">ForwardIterator upper_bound (ForwardIterator first, ForwardIterator last,</span></span><br><span class="line"><span class="comment">                             const T&amp; val);</span></span><br><span class="line"><span class="comment">//查找[first, last)区域中第一个不符合 comp 规则的元素</span></span><br><span class="line"><span class="comment">ForwardIterator upper_bound (ForwardIterator first, ForwardIterator last,</span></span><br><span class="line"><span class="comment">                             const T&amp; val, Compare comp);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>     <span class="comment">// std::cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>    <span class="comment">// std::upper_bound</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span>       <span class="comment">// std::vector</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//以普通函数的方式定义查找规则</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">mycomp</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> j)</span> </span>&#123; <span class="keyword">return</span> i &gt; j; &#125;</span><br><span class="line"><span class="comment">//以函数对象的形式定义查找规则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">mycomp2</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">const</span> <span class="type">int</span>&amp; i, <span class="type">const</span> <span class="type">int</span>&amp; j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i &gt; j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">5</span>] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line">    <span class="comment">//从 a 数组中找到第一个大于 3 的元素</span></span><br><span class="line">    <span class="type">int</span> *p = <span class="built_in">upper_bound</span>(a, a + <span class="number">5</span>, <span class="number">3</span>);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;*p = &quot;</span> &lt;&lt; *p &lt;&lt; endl;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; myvector&#123; <span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span> &#125;;</span><br><span class="line">    <span class="comment">//根据 mycomp2 规则，从 myvector 容器中找到第一个违背 mycomp2 规则的元素</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;::iterator iter = <span class="built_in">upper_bound</span>(myvector.<span class="built_in">begin</span>(), myvector.<span class="built_in">end</span>(), <span class="number">3</span>, <span class="built_in">mycomp2</span>());</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;*iter = &quot;</span> &lt;&lt; *iter;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="equal-range"><a href="#equal-range" class="headerlink" title="equal_range()"></a><em>equal_range()</em></h2><p><a href="http://c.biancheng.net/view/7531.html">http://c.biancheng.net/view/7531.html</a></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="binary-search"><a href="#binary-search" class="headerlink" title="binary_search()"></a><em>binary_search()</em></h2><p><a href="http://c.biancheng.net/view/7537.html">http://c.biancheng.net/view/7537.html</a></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>]]></content>
       <categories>
         <category>技术</category>
         <category>算法类</category>
@@ -205,5 +230,142 @@ git config --global user.email &quot;你的gitHub 邮箱&quot;
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Turned out -later</title>
+    <url>/2023/07/27/Turned%20out%20-later/</url>
+    <content><![CDATA[<p>​​*这是一个号主狂草假想的平行宇宙，各种设定会与原作有所出入，两人前期都会有一定的ooc，看下去就知道原因了</p>
+<p>*设定中格劳克斯的处境与游戏中截然不同，本作中格劳克斯因为“外骨骼改造”获得超凡的腿部能力，而不是像原作因为腿部衰退才用外骨骼辅助，所以性格转变更大。</p>
+<p>*号主集训，关键揭秘部分还在编写，不过这些很明显的伏笔大家都能看出来吧 </p>
+<p>我很少能享受这样一个质朴的集市，难得单纯地好奇心一不小心流连忘返地徘徊于歪斜店门与门口不平整的小地摊之间，在谈天谈地的老年人的闲语间，恍然购入了许多事后总要烦恼怎么处置的食材。还好大爷大妈总劝说着一定要吃新鲜的，所以手里拎着的东西虽然杂七杂八，但是加起来也就一个满满的塑料袋的分量，不会给回去的行程添太多的麻烦。临近市场入口的卖特产小吃的卷发大妈见到我倒是有点吃惊：“欸，小姑娘你买那么多，一顿吃不完得嘞！”</p>
+<p>“有人一起吃的啦”</p>
+<p>“哦，那倒还好嘞，是要和人过节吧！”</p>
+<p>“节日？最近有什么节日吗？”</p>
+<p>“啊，外地人嘛，是我们当地的一个节日，叫往生节，大致上来说当成龙门的安魂节就是啦~”</p>
+<p>“这样子啊，第一次听说，谢谢阿姨。”</p>
+<p>来到了约定的桥墩底下，却不见人影。雨后的天气还是太闷热了，我本身覆着一层湿气的皮肤又成了累赘，于是随着日照的阴影无聊地挪动步伐，慵懒地倚着冷硬的石壁，只想等她自行出现。夕阳染着昨日遗留的积水像葡萄酒的血，这会吸引爱好品酒的她出现了。不过她喜欢的是威士忌来着，还是风味比较独特的谷壳威士忌。</p>
+<p>一时寂寥无声，突然像是坏掉的农具车般吱呀的声音从远处狂啸着靠近，突然又自行隐去，下一瞬间格劳克斯翻越了高大的稻田岸坡，若无其事地踢踏着张扬的彩绘外骨骼出现在我面前。她绕过我的身后戳戳塑料袋。</p>
+<p>“买了菜了啊，都是当地很有滋味的菜欸，肯定很和我口味。”</p>
+<p>“嗯，等待任务开始期间还劳烦你的照顾了。”</p>
+<p>“很期待呢，既然蓝毒小姐做的甜品都那么好吃。那么厨艺肯定也不在话下。”</p>
+<p>“想吃就说，少隔这拍马屁。”这就是我想等她自行出现的理由，尽管她是难得的那个想吃的人，可是我不擅长对付这个人。“你又是跳上来的，能力真的是超出我的想象。”</p>
+<p>而且她和我预想中的完全不是一个人。在我预想中的她软软的，却坚毅不屈。而不是仿佛玩透了世界的规则的高人姿态。虽然我不知道为什么我会对还未见面的人就烙下了深深的刻板印象，但是挨不住我那来自毒素神经的直觉。这个人，哪里都很变扭。 </p>
+<p>“蓝毒小姐总是把我想的太弱了，这对任务执行时的判断很不利。还请你判断的时候自觉在程序的判断条件中把你想象中的我的战力乘以二呢。”</p>
+<p>“好了知道了，快走吧，等了你好久，好热。”</p>
+<p>“毕竟是安努拉呢。那我带你去一个比我家更凉快的地方。”</p>
+<p>“别告诉我是酒吧。”</p>
+<p>“正解。不过这次去真的是正事啦。菜的问题你不用担心，和我家的方向是顺路的。”</p>
+<p>“怪机灵的啊。”</p>
+<p>“被逼的嘛，我们虽然不算同行，也算是同个业内的人，蓝毒小姐现在不明白的话，以后肯定会明白的。”</p>
+<p>我婉拒了格劳克斯背着我前进的邀请。她领着我一路钻入羊肠小巷，拐过几次几乎才通人的弯，进入了这个几乎全是包厢的酒吧。她没骗人，冷气确实足够隔离门外的湿热。我们走进的包厢内对排已经坐了两位人，一位女性黑衣线人阿拉比和一位男性丰蹄技师马尔普斯。我只能和格劳克斯坐狭隘的一排。马尔普斯自我介绍说格劳克斯流落时期就相识的旧友人，由于他大部分技能都是一开始追随格劳克斯学到了，开玩笑地说格劳克斯的本业应该也是技师才对。我无意识地想象她对着自己的外骨骼腿敲敲打打改造的场景，反倒觉得怪合适的。</p>
+<p>而阿拉比是个只做分内事的人，只扼要地告诉我们目标会在咖达镇举行的往生祝贺派对上出现，交代了一下上面要求活捉，也不告诉我们更多具体的内幕就起身走了，留下三个行动者讨论方案。虽然，没有什么纠葛的脏活是不存在的。</p>
+<p>格劳克斯突然轻轻拉过我的耳朵，轻声细语地耳语道：“大体来说，少知道些情报对我们都有好处。”</p>
+<p>瘙痒的温热与话中话有点吓我一跳，但我还是忍住了捂住耳朵的冲动，有些嗔怪地反问道：“你在说什么？”</p>
+<p>“没什么，猜了猜蓝毒小姐在想什么。想回应一下嘛。”</p>
+<p>“你就是这种地方……算了，继续说正事吧。”</p>
+<p>“虽然我觉得没什么好说的，大部分情况还是只能随机应变。服务员，来两杯典窖麦壳威士忌。”</p>
+<p>“……好歹给我介绍一下那个派对的情况吧，我人生地不熟的。”</p>
+<p>因为酒吧特殊性质的原因，酒是通过一个小小的窗口塞进包厢的托盘。坐在窗口的格劳克斯拿起了她最爱的双份威士忌……额，怎么其中一瓶挪到我面前了。</p>
+<p>“试试看嘛，我想要蓝毒小姐也喜欢上我喜欢的东西。”</p>
+<p>“包括我的料理吗？”</p>
+<p>“当然。”</p>
+<p>“好吧。”看着她期待的眼神，我无奈地举起双手。可能是出于某种种族自觉，我不怎么喝酒，虽然麦壳威士忌闻起来的谷物发酵味道重的有点发酸，但是我憋着鼻子浅浅舔了一口，意外地还可以接受。“所以说格劳克斯，你们这的往生祝贺派对到底是？”</p>
+<p>她的视线轻微地躲闪了一丝：“额，其实我也不是很清楚，就是了……我过的还是龙门的安魂节，只听说往生祝贺派对是与死者共舞以庆贺来日的派对。”</p>
+<p>我将询问的目光转到马尔普斯，他只是晃着对于丰蹄略显小巧的双角：“我也仅限于了解的程度。因为往生派对基本都是和自己认识的死者共舞，而我作为孑然一身打拼来的人，在当地没有死去的好友或者亲属，所以没参加过。”</p>
+<p>我忍不住叹了一口气，“那会场地图总有吧。我得视情况准备一些人的麻醉剂或者一群人的麻醉剂。”</p>
+<p>马尔普斯扯开一张皱巴巴的纸头：“那还是有的，线人给的。你们看，目标的爵士被分配在派对右上角的草坪，根据推测的路线图他在最开始访问一圈人后就会一直待在那里，正常情况下你只需要做一些人的麻醉剂放倒几个麻烦的家伙就可以了。”</p>
+<p>“看起来这整个会场还是在一个小山坡上？另一种意义上挺方便。”</p>
+<p>格劳克斯插嘴：“尤其是对我的腿来说。”</p>
+<p>“好了，你也快来给点意见，吃掉一切踪迹的蓝色走狗。”</p>
+<p>格劳克斯顿时放下了仰天的酒杯：“虽然这个外号还挺不错，但是谁是狗了？！”</p>
+<p>“我只是打听地下线索顺带听见的外号——”</p>
+<p>最终还是决定通过上面的一些关系，正面混入这个“自我陶醉”的派对。马尔普斯依旧不能入场。只能作为场外援助。因为入场的条件是携带一件以上熟悉的死者的生前所有物并加以验证，纵使权势力量再强大的人，都不能差遣任何一个早已信游他乡的魂灵替你伪证。即使有例外发生，但是因为这里是泰拉，也不值得我去大惊小怪了。</p>
+<p>准备入场的我和格劳克斯替换了各自的私服，我是穿了当素人模特时被淘汰的马甲套，她则有些反常的抛弃了自己轻便地行动装。下半身是昨日的麻色短裤，外骨骼换了一套行动专用的暗钢色，上半身却严严实实地包裹着发胖的塑胶外衣，乍一看像是夏日的棉袄大衣；甚至还带着毛毡帽子，露出的一对软趴趴的触角大口大口地呼吸布料外侧的空气。唔……捏捏。</p>
+<p>“格劳克斯，该去派对了”再捏捏。</p>
+<p>“额，嗯。”她的头埋进衣物里，有气无力地应了一声。</p>
+<p>“唔，要我拉着你走吗？”</p>
+<p>“嗯，好，麻烦蓝毒小姐了。”</p>
+<p>……怪合适的。</p>
+<p>“我抓住你的手腕吧，左手，递过来。”</p>
+<p> 她像是可怜的流浪小狗，乖乖地将手交付于我的掌心。刻意停留了几秒，她也没有突然反悔地抽回手。我合拢了手，轻松地擒住了一双沾染了无数的血渍却依旧柔软熟悉的手腕。     </p>
+<p>坡道的入口像模像样地安设几个用于大型活动的围栏与闸门，但并不是传统地大包小包过安检。替代X光机的是一排峻黑的遮光屋，四角遍布着精致的花纹，可能是出于隐私保护，一次只能进一个人。我本来想趁机挖苦她以回敬前些天那颗高傲的头颅，但放开格劳克斯的手之前，我却顺势改了口：“我会在门口等你的。”</p>
+<p>“嗯……不了，还是让我在门口等你吧，我先进去。”</p>
+<p>她捂着外衣内侧的口袋缓步挪入房间，大概率放的是入场的同行证吧，不知道她携带的所有物是什么呢，以至于她要用黑色大衣严严实实地捂着。我倚着小屋的杆子等候，放缓了心跳，可几乎听不见屋内的动静。</p>
+<p>大约三十秒后通行员招呼我“检票”，并递交我一条白纱围巾便急不可耐地将我推入门内，能真正将一切视线吸入的黑暗包裹了我。白纱围巾被突然冒出的悬浮之白手伶俐地抽走并宽松地绕在我的脖子上，随后摊着手和我讨要什么东西。我解下脖子上前队友的狗牌交给了它，接触的一瞬起，星星点点的亮光逐渐密密麻麻，众多小小的光束凝结的光晕遮盖纯黑的夜空，热情得好似水星的太阳，但还在不断膨胀逼近我的眼球——可在我慌忙闭眼前就坍缩。</p>
+<p>那是虚假的光！这不可能是源石技艺，更像是改造后的莱塔尼亚巫艺鉴定，可怎么会出现在东国的僻壤。我仍然发楞，一时间分不清虚实，隐隐约约中手推着我过门，算是通过了入场门槛。我问托着我肩膀的格劳克斯看见的和我是一样的东西吗，她反问我看见了什么，我如实地描述一遍，她却默不作声，比进入前更加惘然地死死盯住大地。许久，她才开口。</p>
+<p>“你也挺奇特的，进来的景象居然不是通常的和死者打招呼，而是宛如宇宙大爆炸再现的场景。”</p>
+<p>“意思是说，格劳克斯你该不会真的看见死者的鬼魂了吧？”</p>
+<p>“不是，这里的大家都能遇见死者的鬼魂，这没什么好奇怪，更没什么好害怕的……”</p>
+<p>“所以，你怕鬼吗？”</p>
+<p>“一半一半吧……其实我定居这里的第一年，我还是参加过往生派对——的一次开头。我携带的是我父母的遗物，但是我遇见的鬼魂伴侣不是父母，而是一个影怪。”</p>
+<p>“会不会是因为外地人的关系？”</p>
+<p>格劳克斯维持着缄默，干脆地推开了更加摸不着头脑的我，自顾自地大步流星地前往会场。即时她又恢复别扭的性格，我却忍不住担心她的状况，很难不怀疑她和这个节日没有什么特别不巧的过节，她为什么还要接下这个任务？尽管好奇，但是当下不适合我多加过问，没准参加这个派对，一切都会顺其自然的下去吧，于是我也尽可能快步地跟上她。</p>
+<p>现在我们终于揭开了会场的最后一层的面纱，踏足山坡上的草坪派对。虽然我不太了解建筑风格，其间布置的高脚餐桌、装饰的雕塑与石英石柱以及花卉与精致喷泉无一不透露古代智者般典雅又自由的气息，模糊的魂灵身形随着我们越来越接近属于自己的区域而逐渐显形，若无所依的空鱼自在的在我身旁游荡，调皮地来回穿梭我的身体，左右眺望其他参加者身边的魂灵却只能看见一个模糊的团块。真不可思议啊，我向曾经的战友深靛挥挥手致意，她也欢欣鼓舞地甩手打招呼。我很庆幸，往生的她回到了最初对生命的活力执着而痴迷的模样，而非死时过分沉重的壮烈满怀。当时擅自替她怀揣的遗憾，如今终于从我的脑海中彻底抹去。不适合她的始终是不值得被纪念的。</p>
+<p>但是我在执行任务中独自沉迷多少太松懈了，反观格劳克斯已经挑选了一张最高的椅子，翘着二郎腿侦察实际的环境。不，顺着她的视线望去，正是在和他人客套的任务目标。</p>
+<p>“我们这个位置是场地最左上角的地方，你先靠到我的背后进行装弹。”</p>
+<p>“嗯。”我掀开袖口，打开分配到的特殊装备的盖板——符合军标威力的制式折叠臂驽——塞入一打自制的药丸麻醉弹，其他三个备用弹夹也塞满了弹药，均为命中即倒地的药量，不可能不够用。</p>
+<p>因为不是什么野地帮派对殴或者偷袭敌营的大任务，这些准备工作就足矣。剩下的时间都是在等候时机，或者说，等格劳克斯的发令。虽然她之前说自己的魂灵是黑色影怪，但我看见的却是同她发色般的深蓝色。我试着用心声问了问深靛她看见的是什么，也请深靛问问其他魂灵同样的问题，都说确实是黑色的影怪。“这个影怪的剪影很像她本人，她本人的魂灵很错乱，像是两种可能性在打架。”，深靛补充道。</p>
+<p>……</p>
+<p>尽管谜团更多了，但是当下不适合我多加过问。</p>
+<p>沉默的舞会中，大多数人与自己身边的魂灵为伴起舞，即使少有的说话声，也生怕打扰到他人。些许时间后，格劳克斯突然咋舌一声：“不好，他比预想中的路线更快的返回了。你分我一个备用弹夹，我先绕路埋伏，你马上！”我从背后递交弹夹后，椅子上的人就转瞬消匿了。原来她能隐去吱呀的机械脚步声音，嗯，我得把她的能力按预想中的两倍计算。</p>
+<p>爵士分配到的场地由一圈茂密高耸的花坛严实地包了三层，使得它成为开放场地的唯一天然包厢。听内部的脚步声最多只有三种。我预想三个人不同的站位该怎么速射时，意想不到的人拦在了门口，是马尔普斯，携带着一个类似电磁枪的重型老式武器，他精瘦的身躯顿然显得小巧，但还是靠着丰蹄天生的力量将武器稳稳当当地架起。</p>
+<p>“虽然没有很严格的安检，但是这显然不是能正常拿进来的东西，马尔普斯。”我背着手展开了臂弩。</p>
+<p>丰蹄不屑地喷鼻气：“哼，所以我是非法拿进来的，这个回答你满意吗安努拉。”</p>
+<p>表面上没有明说，但是他已经完全表明了自己的态度，彻头彻尾地故意挑衅。我不加犹豫，反手送他一发今日的第一弹，但弹药在最后一刻像撞上无形的屏障，激烈地颤抖挣扎，直到失去动力应然落地。局势不对，我迅速藏身在花坛后，心里嘟囔道：“自带小范围磁力场……”</p>
+<p>马尔普斯没有激进地追杀，而是像第一次获得胜利的毛头小子般炫耀地大声喊叫：“是啊，如果你想要通过，只能赤手空拳地近身格斗了，嘛，这样子即使我不会任何格斗技巧也是妥妥的顺风局，丰蹄的力量绝非笑话。赶紧考虑吧，否则你只有被我射击的份了。顺带一提，不要指望你的搭档用她那笨重的铁腿来打败我比较好。”</p>
+<p>“你为什么那么做？格劳克斯不是你人生地不熟时就与你一同生存战斗的伙伴吗？不是你自己说你的很多技术都是更她学的吗？”</p>
+<p>“虽然具体和你讲了你也不会明白，但是原因很简单，”我听见马尔普斯按耐不住偷悦地搓揉手指的声音，“我曾经的归属被格劳克斯夺走了，现在有新的归属邀请的加入，而加入的条件正好是活捉格劳克斯。”我隔着花坛的洞眼，看他捡起了刚刚被拦截的麻醉弹药，塞进了自己的小手枪里。“在我们这弄到小而劲的麻醉弹药几乎不可能，我就先借一下现成的了。安努拉，在密集的电击射线下起舞吧！”狂妄的攻击宣言给电磁枪卸下保险栓，马尔普斯手在板扣疯狂地连续扣压。我根据深靛通过心念即时传达的信息，快速地沿环外侧顺时针奔跑，但是却没有闻到一点点植物被烧焦的呛人气味。</p>
+<p>深靛指了指里面：“格劳克斯出来了。”</p>
+<p>“不好，得赶紧告诉她磁力场的存在！”我以弩臂撕扯出花坛的一道小口，横穿入室内，但入口已经有一具昏迷倒下的人，可恶，没更多选择了！我一边更换弹药一边冲锋，对着最有特征的牛角下方打出一串实心橡胶弹，堪堪击中。马尔普斯明显地被惹恼：“都说了外人不懂还来坏事！？”同时一发亮光正对我袭来，我躲闪不及。幸运地是，它又在半途戛然而止了。</p>
+<p>“格劳克斯的老家伙怎么关键时刻总是不灵光，<em>龙门粗口</em>。”</p>
+<p>“那当然是我有意把它设计成只在我手下才会听话的样子。”</p>
+<p>格劳克斯按着一个没有任何图标的遥控器、拖着两个昏倒的人从内部走出，其中一具是爵士。她狠狠地摔烂遥控器，将他们搁置到一旁，不疾不徐地走向马尔普斯的枪口。“尽管我劝阻了你那么久，你还是选择了另一条路。很抱歉失去你，伙伴。但这也是我最后一次称呼你为伙伴了，马尔普斯。”</p>
+<p>“格劳克斯，小心他的强磁场！”</p>
+<p>“我知道，我会脱下我的外骨骼。不过需要蓝毒小姐帮忙争取十几秒的时间。他的电磁枪威力已经被我限位限死了，你放心上就是了。”</p>
+<p>“你们大声密谋是纯纯地把我当白痴耍，啊！？先把你撂倒了！”</p>
+<p>马尔普斯掏出小手枪射击格劳克斯，命中了左侧胳膊。“芜湖！”他大功告成地重重抛下电磁枪：“安努拉，这个药效要多久生效啊？”像是观看电影的结局般，目无旁人地盯着半瘫软的格劳克斯。</p>
+<p>他真的很碎嘴啊，作为一个想干点坏事的人来说。我加上了最后一颗实心橡胶弹，瞄准他的后颈。“很遗憾，永远不会生效。”发射。紧接着，一声沉重的金属敲击声，一声仪器瘫痪的电流声。虽然肉眼不可见，但是我可以确信，烦人的磁场已经结束了。“格劳克斯，趁现在！”</p>
+<p>格劳克斯瘫软的肌肉瞬间绷紧，驱动双腿如蝗虫般高高跃起，不偏不倚地落在马尔普斯的身后，依旧是弩口顶着后脖颈注入一发麻醉弹药。马尔普斯终于很干脆地倒地不起。</p>
+<p>“任务目标，双倍丰收。配合很棒，蓝毒小姐~”</p>
+<p>线人驾驶箱车抵达收获，她只肯收爵士，最多再稍我们两一程，对于随意横躺地上的马尔普斯和其他两个不认识的家伙置之不理。格劳克斯嘴皮子说了五分钟请求线人只要再多带走一个马尔普斯，还是因为交付时限要来不及了被不顾抗议地硬生生塞到车上。</p>
+<p>我一边踏上车，一边踩着地面，熙熙攘攘的魂灵团块像云朵般收缩积压，绵绵荡荡卷送几朵彼岸安宁的浪花白沫予世间，与自己前浪的舞蹈的人们是多么快活，是多么陶醉。“我最后问一下，离开这个场地之后，魂灵就会消失了吗？”</p>
+<p>“准确来说不是消失，只是回彼岸养精蓄锐，静等和你的下一次见面。”</p>
+<p>“这样啊，谢谢。”</p>
+<p>我深吸一口气，学深靛的精神气向面容些许模糊的她大大地挥手，‘下次再见’。</p>
+<ul>
+<li></li>
+</ul>
+<p>爵士被医师用原始的手段强制清醒之后，就被巫师模样的家伙带到一个特殊的封闭小房间。我一直假设我们需要活捉他的理由是因为他们需要审问出证言，但随后我就知道并非如此。因为他们也把我和格劳克斯一起请进一个类似功能的房间了，只不过是会客室规格的房间，而不是小牢房。</p>
+<p>房间里，盘坐在主位的还是线人阿拉比。她摘下了黑衣的帽兜，露出一对不知是哪一族的冲天闪电角。她看着我们犹豫的伫立在门口，无奈地摆手请我们进来：“好了好了不用一副惊讶的表情瞪我了，我不是什么大人物，这次还是作为线人和你们交涉罢了。”</p>
+<p>我还在纳闷，格劳克斯已经冲完一杯咖啡随意地坐在客席位地沙发上，一把给我也拖进柔软的沙发里，她一板一眼地反问：“是什么委托着急得不肯让我们休息一下。”</p>
+<p>“准确来说也不算是委托，是交涉，是商量，是交易。”</p>
+<p>“那也请以尽量简洁快速地说明，我可不想错过和蓝毒小姐的往生节晚餐。”</p>
+<p>“简单，我只需要三个问题，如果你们都回答不出来，就当作成交。第一，蓝毒看见的格劳克斯的魂灵颜色是否和其他人的不一样？”</p>
+<p>格劳克斯在桌下握紧我的手，黯淡的眼神祈求我的沉默。我无法回绝，咽下了老实的回答。</p>
+<p>“第二，既然格劳克斯不适应我们当地的往生节，一开始为什么又要因为往生节在我们这谋生定居？”</p>
+<p>我侧目听着格劳克斯若有若无的重喘声。</p>
+<p>“第三，格劳克斯，你今天携带的’所有物’是谁·的·呢·？”</p>
+<p>阿拉比满脸笑容地看着格劳克斯敢怒不敢言的神情，热情地邀请她签署这场交易的同意书。</p>
+<p>“如果你肯让那些好奇的巫师研究你的魂灵，你就会换来你一直苦求的人生答案。既然你这三个问题一个都答不上了，你肯定是同意的不能再同意了~交涉成立，我先走了。”</p>
+<p>“等一下，我作为罗德岛的外派干员，你不需要再次和我交涉一下吗？”</p>
+<p>“她要留下来知道自己的真相的时候，你会舍得不陪在她旁边吗？”</p>
+<p>……不会。但是我不知道多少是出于关心，多少是出于好奇心，不敢口头作答。</p>
+<p>“那，就这样。我请他们进来了。</p>
+]]></content>
+      <categories>
+        <category>创作</category>
+        <category>文字</category>
+      </categories>
+      <tags>
+        <tag>格蓝</tag>
+        <tag>同人</tag>
+        <tag>百合向</tag>
+        <tag>待填坑</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>blog</title>
+    <url>/2023/07/20/blog-1/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
