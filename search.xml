@@ -6,232 +6,6 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>各种使用时新晋语法函数</title>
-    <url>/2023/07/12/c++_grammer_record_/</url>
-    <content><![CDATA[<h1 id="new-int-m"><a href="#new-int-m" class="headerlink" title="new int[m]"></a>new int[m]</h1><p>例：p[n]为struct,有*time，p[n].time&#x3D;new int[m],time变成int 数组，有m项</p>
-<h1 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h1><p>for(auto t:res)cout&lt;&lt;t&lt;&lt;’ ‘;<br>auto res&#x3D;get_di(X);【vector<int> get_di(int n)】</p>
-<h1 id="for（int-i-x3D-n-1-i-i–）"><a href="#for（int-i-x3D-n-1-i-i–）" class="headerlink" title="for（int i&#x3D;n-1;~i;i–）"></a>for（int i&#x3D;n-1;~i;i–）</h1><p>在for循环中，<del>i的作用是判断i是否为-1。因为-1的二进制表示是全1，所以</del>(-1)就是全0，也就是0。所以当i等于-1时，~i就为0，循环就会终止。这样可以避免使用&#x3D;&#x3D;或!&#x3D;运算符来比较i和-1。</p>
-<h1 id="const-double-eps-x3D-1e-6"><a href="#const-double-eps-x3D-1e-6" class="headerlink" title="const double eps&#x3D;1e-6;"></a>const double eps&#x3D;1e-6;</h1><p>判断浮点数是否为零或者小于零时由于浮点数特性需要判断它是否小于一个很小的数</p>
-<h1 id="struct结构体内比较格式"><a href="#struct结构体内比较格式" class="headerlink" title="struct结构体内比较格式"></a>struct结构体内比较格式</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">    <span class="type">int</span> l,r;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> node &amp;w)<span class="type">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> r&lt;w.r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="amp-的传递区别"><a href="#amp-的传递区别" class="headerlink" title="* &amp;的传递区别"></a>* &amp;的传递区别</h1><h1 id="vector传递-高精度计算"><a href="#vector传递-高精度计算" class="headerlink" title="vector传递 高精度计算"></a>vector<int>传递 高精度计算</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vector&lt;int&gt; mul(vector&lt;int&gt; &amp;A, int b)</span><br><span class="line">&#123;</span><br><span class="line">    vector&lt;int&gt; C;</span><br><span class="line">    int t = 0;</span><br><span class="line">    for (int i = 0; i &lt; A.size() || t; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        if (i &lt; A.size()) t += A[i] * b;</span><br><span class="line">        C.push_back(t % 10);</span><br><span class="line">        t /= 10;</span><br><span class="line">    &#125;</span><br><span class="line">    while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();</span><br><span class="line">    return C;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    string a;</span><br><span class="line">    int b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    vector&lt;int&gt; A;</span><br><span class="line">    for (int i = a.size() - 1; i &gt;= 0; i -- ) A.push_back(a[i] - &#x27;0&#x27;);</span><br><span class="line">    auto C = mul(A, b);</span><br><span class="line">    for (int i = C.size() - 1; i &gt;= 0; i -- ) printf(&quot;%d&quot;, C[i]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h1 id="lower-bound-stk-begin-stk-end-arr-i-x3D-arr-i"><a href="#lower-bound-stk-begin-stk-end-arr-i-x3D-arr-i" class="headerlink" title="*lower_bound(stk.begin(), stk.end(), arr[i]) &#x3D; arr[i]"></a>*lower_bound(stk.begin(), stk.end(), arr[i]) &#x3D; arr[i]</h1><p>它返回一个指向范围 [first, last) 中第一个不小于 val 的元素的迭代器<br>可以替代二分查找</p>
-<h1 id="priority-queue-lt-int-vector-greater-gt-heap"><a href="#priority-queue-lt-int-vector-greater-gt-heap" class="headerlink" title="priority_queue&lt;int,vector,greater&gt; heap;"></a>priority_queue&lt;int,vector<int>,greater<int>&gt; heap;</h1><p>优先队列是一种特殊的队列，它的元素被赋予优先级，当访问元素时，具有最高级优先级的元素先被访问12。在C++中，priority_queue是一个容器适配器，它提供了常数时间查找默认情况下最大（或最小）元素的功能，但以对数时间为代价进行插入和提取。<br>        empty()   如果队列为空返回真</p>
-<pre><code>    pop()       删除队顶元素
-
-    push()     入队一个元素
-
-    size()      返回优先队列中拥有的元素个数
-
-    top()        返回优先队列队顶元素
-</code></pre>
-<p>默认情况下，priority_queue是一个大根堆，这意味着根节点的值大于或等于子节点的值,<br>如果想要使用小根堆，可以将priority_queue的第三个参数设置为greater<int>。</p>
-<p>大根堆是一种完全二叉树，其中所有父节点的值都比左右孩子的值大。小根堆与大根堆相反，其中所有父节点的值都比左右孩子的值小。<br>大根堆例如：<br>          10<br>        &#x2F;    <br>       8      7<br>     &#x2F;   \   &#x2F;<br>    6     4 3</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">是默认的大根堆实现，<span class="built_in">top</span>()是当前优先队列的最大值</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> my_array[<span class="number">10</span>] = &#123;<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-8</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">-7</span>,<span class="number">-6</span>&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    priority_queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        q.<span class="built_in">push</span>(my_array[i]);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;order: &quot;</span> &lt;&lt; q.<span class="built_in">top</span>() &lt;&lt; endl;</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>   小根堆例如<br>          1<br>        &#x2F;    <br>       2      3<br>     &#x2F;   \   &#x2F;<br>    4     5 6</p>
-<h1 id="cout-lt-lt-fixed-lt-lt-setprecison-15-lt-lt-dp-a"><a href="#cout-lt-lt-fixed-lt-lt-setprecison-15-lt-lt-dp-a" class="headerlink" title="cout&lt;&lt;fixed&lt;&lt;setprecison(15)&lt;&lt;dp[a]"></a>cout&lt;&lt;fixed&lt;&lt;setprecison(15)&lt;&lt;dp[a]</h1><p>精确输出小数点后几位</p>
-<h1 id="while-cin-gt-gt-a-gt-gt-b-gt-gt-c-a-b-c-w-a-b-x3D-c"><a href="#while-cin-gt-gt-a-gt-gt-b-gt-gt-c-a-b-c-w-a-b-x3D-c" class="headerlink" title="while (cin &gt;&gt; a &gt;&gt; b &gt;&gt; c, a || b || c)w[a][b] &#x3D; c;"></a>while (cin &gt;&gt; a &gt;&gt; b &gt;&gt; c, a || b || c)w[a][b] &#x3D; c;</h1><p>用于输入多组数据且全为0时表示结束的输入</p>
-<h1 id="lower-bound-、upper-bound-、equal-range-以及-binary-search"><a href="#lower-bound-、upper-bound-、equal-range-以及-binary-search" class="headerlink" title="lower_bound()、upper_bound()、equal_range() 以及 binary_search()"></a>lower_bound()、upper_bound()、equal_range() 以及 binary_search()</h1><h2 id="lower-bound"><a href="#lower-bound" class="headerlink" title="lower_bound()"></a><em>lower_bound()</em></h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">在 [first, last) 区域内查找不小于 val 的元素</span></span><br><span class="line"><span class="comment">ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last,</span></span><br><span class="line"><span class="comment">                             const T&amp; val);</span></span><br><span class="line"><span class="comment">//在 [first, last) 区域内查找第一个不符合 comp 规则的元素</span></span><br><span class="line"><span class="comment">ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last,</span></span><br><span class="line"><span class="comment">                             const T&amp; val, Compare comp);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>     <span class="comment">// std::cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>    <span class="comment">// std::lower_bound</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span>       <span class="comment">// std::vector</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//以普通函数的方式定义查找规则</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">mycomp</span><span class="params">(<span class="type">int</span> i,<span class="type">int</span> j)</span> </span>&#123; <span class="keyword">return</span> i&gt;j; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//以函数对象的形式定义查找规则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">mycomp2</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">const</span> <span class="type">int</span>&amp; i, <span class="type">const</span> <span class="type">int</span>&amp; j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i&gt;j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">5</span>] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line">    <span class="comment">//从 a 数组中找到第一个不小于 3 的元素</span></span><br><span class="line">    <span class="type">int</span> *p = <span class="built_in">lower_bound</span>(a, a + <span class="number">5</span>, <span class="number">3</span>);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;*p = &quot;</span> &lt;&lt; *p &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; myvector&#123; <span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span> &#125;;</span><br><span class="line">    <span class="comment">//根据 mycomp2 规则，从 myvector 容器中找到第一个违背 mycomp2 规则的元素</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;::iterator iter = <span class="built_in">lower_bound</span>(myvector.<span class="built_in">begin</span>(), myvector.<span class="built_in">end</span>(),<span class="number">3</span>,<span class="built_in">mycomp2</span>());</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;*iter = &quot;</span> &lt;&lt; *iter;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="upper-bound"><a href="#upper-bound" class="headerlink" title="upper_bound()"></a><em>upper_bound()</em></h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">//查找[first, last)区域中第一个大于 val 的元素。</span></span><br><span class="line"><span class="comment">ForwardIterator upper_bound (ForwardIterator first, ForwardIterator last,</span></span><br><span class="line"><span class="comment">                             const T&amp; val);</span></span><br><span class="line"><span class="comment">//查找[first, last)区域中第一个不符合 comp 规则的元素</span></span><br><span class="line"><span class="comment">ForwardIterator upper_bound (ForwardIterator first, ForwardIterator last,</span></span><br><span class="line"><span class="comment">                             const T&amp; val, Compare comp);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>     <span class="comment">// std::cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>    <span class="comment">// std::upper_bound</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span>       <span class="comment">// std::vector</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//以普通函数的方式定义查找规则</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">mycomp</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> j)</span> </span>&#123; <span class="keyword">return</span> i &gt; j; &#125;</span><br><span class="line"><span class="comment">//以函数对象的形式定义查找规则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">mycomp2</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">const</span> <span class="type">int</span>&amp; i, <span class="type">const</span> <span class="type">int</span>&amp; j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i &gt; j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">5</span>] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line">    <span class="comment">//从 a 数组中找到第一个大于 3 的元素</span></span><br><span class="line">    <span class="type">int</span> *p = <span class="built_in">upper_bound</span>(a, a + <span class="number">5</span>, <span class="number">3</span>);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;*p = &quot;</span> &lt;&lt; *p &lt;&lt; endl;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; myvector&#123; <span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span> &#125;;</span><br><span class="line">    <span class="comment">//根据 mycomp2 规则，从 myvector 容器中找到第一个违背 mycomp2 规则的元素</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;::iterator iter = <span class="built_in">upper_bound</span>(myvector.<span class="built_in">begin</span>(), myvector.<span class="built_in">end</span>(), <span class="number">3</span>, <span class="built_in">mycomp2</span>());</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;*iter = &quot;</span> &lt;&lt; *iter;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="equal-range"><a href="#equal-range" class="headerlink" title="equal_range()"></a><em>equal_range()</em></h2><p><a href="http://c.biancheng.net/view/7531.html">http://c.biancheng.net/view/7531.html</a></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="binary-search"><a href="#binary-search" class="headerlink" title="binary_search()"></a><em>binary_search()</em></h2><p><a href="http://c.biancheng.net/view/7537.html">http://c.biancheng.net/view/7537.html</a></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-        <category>算法类</category>
-      </categories>
-      <tags>
-        <tag>acm</tag>
-        <tag>算法</tag>
-        <tag>训练记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>win11 搭建hexo+github以ayer为主题的个人博客</title>
-    <url>/2023/06/26/blog/</url>
-    <content><![CDATA[<hr>
-<pre><code>本教程针对的主题是Ayer,主播建议是选好自己喜欢的主题后再进入看教程。
-博客和主题安装部分通用
-ayer调教部分以及遇到的bug可供参考
-</code></pre>
-<hr>
-<h3 id="参考的教程"><a href="#参考的教程" class="headerlink" title="参考的教程"></a>参考的教程</h3><ol>
-<li><p><a href="https://hexo.io/zh-cn/docs/index.html">hexo官方文档</a> 必看官方文档</p>
-</li>
-<li><p><a href="https://zhuanlan.zhihu.com/p/60578464">知乎教程</a>大部分步骤来自这里，<del>一部分懒得打字会照抄，</del>主播会省略诸如github注册操作、使用英文名等等程序员基本素养问题，<strong>只提及主要步骤做记录</strong>,有疑问可以具体查看这里</p>
-</li>
-<li><p><a href="https://shen-yu.gitee.io/2019/ayer/">Ayer主页说明</a>主页个性化设置</p>
-</li>
-<li><p>*<a href="https://www.bilibili.com/video/BV1KD4y1p7Kg/">B站教程github打包式建站</a>github比较流畅的小伙伴可以试试这个</p>
-</li>
-</ol>
-<p><em>碎碎念</em>：主播wsl2和codespace都试过了，能成功搭建博客但是部署theme都有大大小小的问题，最终win11本地成功搭建模板化的主题，目前商在个性化修改中。</p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1.环境准备"></a>1.环境准备</h2><p>hexo的安装前提是</p>
-<ul>
-<li><p><a href="nodejs.org/zh-cn">Node.js</a>   nodejs.org&#x2F;zh-cn(安装时自带npm平台)</p>
-</li>
-<li><p><a href="https://git-scm.com/downloads">Git</a>  <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a><br>（当然以上都可以使用镜像站点下载）</p>
-</li>
-<li><p><em>说明：</em><br> 如果你细心的看了官方文档那么你会发现它会提及<code>Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本</code>,以及后面附带了一张hexo与Node.js版本一一对应的表格。本人的经验是可以先一律无脑最新版，大部分旧版都兼容。若主题有特殊版本要求建议按照主题的要求来。<del>虽然我没有那么做</del></p>
-</li>
-</ul>
-<p>下载 Node.js 和 Git 程序并安装，一路点 “下一步” 按默认配置完成安装。</p>
-<p>安装完成后，Win+R 输入 cmd 并打开，依次输入 node -v、npm -v 和 git –version 并回车，如下图出现程序版本号即可。</p>
-<h2 id="2-安装hexo"><a href="#2-安装hexo" class="headerlink" title="2.安装hexo"></a>2.安装hexo</h2><p>首先你需要准备一个<strong>完全空白的文件夹</strong>（本文假设为blog）来存放hexo的程序文件。新建好后在该文件夹空白处右键选择<code>Git Bash Here</code>,这个选项可能藏在win11的<code>显示更多选项</code>。</p>
-<p>npm一键安装hexo程序指令：</p>
-<hr>
-<pre><code>npm install -g hexo-cli
-</code></pre>
-<hr>
-<p>如果你是mac用户需要<strong>sudo（管理员权限）</strong>来操作，例如：</p>
-<hr>
-<pre><code>sudo npm install -g hexo-cli
-</code></pre>
-<hr>
-<p>安装时长视网络环境而定，可以考虑挂加速器，请耐心等待</p>
-<h2 id="3-link（链接）github"><a href="#3-link（链接）github" class="headerlink" title="3.link（链接）github"></a>3.link（链接）github</h2><p>首先你已经有了一个github的免费账户并且完成了一系列验证。</p>
-<p>然后回到你的blog文件夹，依旧是右键<code>Git Bash Here</code>进入到terminal，设置用户名和邮箱；</p>
-<hr>
-<pre><code>git config --global user.name &quot;你的gitHub 用户名&quot;
-git config --global user.email &quot;你的gitHub 邮箱&quot;
-（替换双引号内容）
-</code></pre>
-<hr>
-<ul>
-<li><em>说明：</em><br> 如果你遇到了<code>error: key does not contain a section: xxx</code>的报错，你可以尝试自己手写命令并输入，或者输入<code>git config --global --edit</code>手动编辑配置文件并保存。</li>
-</ul>
-<p><strong>然后创建SSH密匙</strong>，无脑回车到程序结束：</p>
-<hr>
-<pre><code>ssh-keygen -t rsa -C &quot;你的gitHub 邮箱&quot;
-</code></pre>
-<hr>
-<p>完成后，登录github——&gt;选择右侧边栏的总setting——&gt;选择左侧边栏的SSH and GPG keys——&gt;选择New SSH keys——&gt;title取名并且附上——&gt;</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-        <category>web类</category>
-      </categories>
-      <tags>
-        <tag>blog</tag>
-        <tag>hexo</tag>
-        <tag>教程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Summer training daily record 7.12~7.18</title>
-    <url>/2023/07/12/train_record_7.12/</url>
-    <content><![CDATA[<h1 id="图论构造-Tenzing-and-His-Animal-Friends"><a href="#图论构造-Tenzing-and-His-Animal-Friends" class="headerlink" title="图论构造 Tenzing and His Animal Friends"></a>图论构造 Tenzing and His Animal Friends</h1><p><a href="https://codeforces.com/problemset/problem/1842/D">https://codeforces.com/problemset/problem/1842/D</a><br><strong>看不懂的题面部分</strong>：u,v,y的意义。<br>理解为u或者v分开单独玩的时间不超过y。一共m组.</p>
-<p>思路总结：<br>求最长时间的情况下，由于n一定不参加聚会，所以和n关联的m最大可以参加v(m-&gt;n)的时间，类推每个点最长参加时长为它到n的最短路。当1,n不相连则无上限（样例如果没有2 5 1 那么2 3可以无限参加派对）。</p>
-<p>接着构造聚会的方案。di为1-&gt;i的最短路，仅在di-&gt;dn时间选择i,使得（u,v）满足du-dv&lt;&#x3D;y。即每次选出最短路的点，之后加入</p>
-<p>另一个是dijkstra构造，即每次取最短点。设存在两个集合S,T，集合S 中为还能参加聚会的点，集合 T 中为不能再参加聚会的点。最初 T 中仅n 一个元素。联系到上述每个点最大参会总时长的得出方式，我们每次从 S 中选择一个参会时间上限最短的点 x，让S 中的所有点都参加一次聚会，时长为 x 的参会时间上限。一直这样进行下去，直到点 1不在 S 当中。</p>
-<h1 id="CF876-div2-C-Insert-Zero-and-Invert-Prefix-偏移量-贪心"><a href="#CF876-div2-C-Insert-Zero-and-Invert-Prefix-偏移量-贪心" class="headerlink" title="CF876(div2)-C-Insert Zero and Invert Prefix(偏移量+贪心)"></a>CF876(div2)-C-Insert Zero and Invert Prefix(偏移量+贪心)</h1><p><a href="https://codeforces.com/problemset/problem/1839/C">https://codeforces.com/problemset/problem/1839/C</a></p>
-<p>考察的部分：特殊情况贪心+偏移量<br>具体解答<a href="https://zhuanlan.zhihu.com/p/634514907">https://zhuanlan.zhihu.com/p/634514907</a><br><strong>偏移量cost解释</strong>：当做逆操作时候，数组前面的书均取逆，cost记录奇偶次，并且与原数组的数操作得出数现在的状态</p>
-<p>该评论区有提及从左向右扫的逆向思路：形如1111……0的串，删去最后的0并反转所有的1<br>不断重复<br>例如<br>    1 0 0 1 1 0<br>      x<br>    0 0 1 1 0<br>            x<br>    1 1 0 0<br>        x<br>    0 0 0 </p>
-<ul>
-<li><input disabled="" type="checkbox"> 但是怎么变成代码呢emmmm<br>拆解操作思路<br><a href="https://zhuanlan.zhihu.com/p/636927276">https://zhuanlan.zhihu.com/p/636927276</a></li>
-</ul>
-<h1 id="CF-884-vp"><a href="#CF-884-vp" class="headerlink" title="CF 884 vp"></a>CF 884 vp</h1><h1 id="acwing-数学部分补充"><a href="#acwing-数学部分补充" class="headerlink" title="acwing 数学部分补充"></a>acwing 数学部分补充</h1><p>卡特兰数<br><a href="https://leetcode.cn/circle/article/lWYCzv/">https://leetcode.cn/circle/article/lWYCzv/</a></p>
-<h4 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E4%B8%80%E3%80%81%E5%BC%95%E8%A8%80"></a>一、引言</h4><p>卡特兰数（Catalan number）是<strong>组合数学</strong>中一个常出现在各种<strong>计数问题</strong>中的<strong>数列</strong>。</p>
-<p>数列的前几项为：<code>1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862，...</code></p>
-<p>本文将会选取几个经典的卡特兰问题，难度先易后难，带领读者逐个击破解决，最后给出相关的解题模板。</p>
-<h4 id="二、经典问题"><a href="#二、经典问题" class="headerlink" title="二、经典问题"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E4%BA%8C%E3%80%81%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98"></a>二、经典问题</h4><h5 id="2-1-进出栈序列"><a href="#2-1-进出栈序列" class="headerlink" title="2.1 进出栈序列"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#21-%E8%BF%9B%E5%87%BA%E6%A0%88%E5%BA%8F%E5%88%97"></a>2.1 进出栈序列</h5><p>这是一道<strong>最经典</strong>的入门级卡特兰数题目，如果能把这题看懂，相信后面的题目也能迎刃而解。</p>
-<p><strong>题目描述</strong></p>
-<p>n 个元素进栈序列为：<code>1，2，3，4，...，n</code>，则有多少种出栈序列</p>
-<p><strong>思路</strong></p>
-<p>我们将进栈表示为 +1，出栈表示为 -1，则 1 3 2 的出栈序列可以表示为：<code>+1 -1 +1 +1 -1 -1</code>。</p>
-<p><img src="https://pic.leetcode-cn.com/ed47ff3bb463fd4635707d47b2dbec7034141f798fb18b514170f4df39e9dd16-frame_00003.png" alt="frame_00003.png"></p>
-<p>根据栈本身的特点，每次出栈的时候，必定之前有元素入栈，即对于每个 -1 前面都有一个 +1 相对应。因此，出栈序列的<strong>所有前缀和</strong>必然大于等于 0，并且 +1 的数量<strong>等于</strong> -1 的数量。</p>
-<p>接下来让我们观察一下 n &#x3D; 3 的一种出栈序列：<code>+1 -1 -1 +1 -1 +1</code>。序列前三项和小于 0，显然这是个非法的序列。</p>
-<p>如果将<strong>第一个</strong>前缀和小于 0 的前缀，即前三项元素都进行取反，就会得到：<code>-1 +1 +1 +1 -1 +1</code>。此时有 <code>3 + 1</code> 个 +1 以及 <code>3 - 1</code> 个 -1。</p>
-<p>因为这个小于 0 的前缀和必然是 -1，且 -1 比 +1 多一个，取反后，-1 比 +1 少一个，则 +1 变为 n + 1 个，且 -1 变为 n - 1 个。进一步推广，对于 n 元素的每种非法出栈序列，都会对应一个含有 <code>n + 1</code> 个 +1 以及 <code>n - 1</code> 个 -1 的序列。</p>
-<p>如何证明这两种序列是一一对应的？</p>
-<p>假设非法序列为 A，对应的序列为 B。每个 A 只有一个”<strong>第一个前缀和小于 0 的前缀</strong>“，所以每个 A 只能产生一个 B。而每个 B 想要还原到 A，就需要找到”<strong>第一个前缀和大于 0 的前缀</strong>“，显然 B 也只能产生一个 A。</p>
-<p><img src="https://pic.leetcode-cn.com/846c04b60f59ab17deffce8e6c217732106f6865fb29d274665b1d956b47b8bd-frame_00011.png" alt="frame_00011.png"></p>
-<p>每个 B 都有 <code>n + 1</code> 个 +1 以及 <code>n - 1</code> 个 -1，因此 B 的数量为 C2nn+1C_{2n}^{n+1}，相当于在长度为 2n 的序列中找到 <code>n + 1</code> 个位置存放 +1。相应的，非法序列的数量也就等于 C2nn+1C_{2n}^{n+1}。</p>
-<p>出栈序列的总数量共有 C2nnC_{2n}^{n}，因此，合法的出栈序列的数量为 C2nn−C2nn+1=C2nnn+1C_{2n}^{n} - C_{2n}^{n+1} &#x3D; \frac{C_{2n}^n}{n + 1}。</p>
-<p>此时我们就得到了卡特兰数的通项 C2nnn+1\frac{C_{2n}^n}{n + 1}，至于具体如何计算结果将会在后面进行介绍。</p>
-<h5 id="2-2-括号序列"><a href="#2-2-括号序列" class="headerlink" title="2.2 括号序列"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#22-%E6%8B%AC%E5%8F%B7%E5%BA%8F%E5%88%97"></a>2.2 括号序列</h5><p><strong>题目描述</strong></p>
-<p>n 对括号，则有多少种 “括号匹配” 的括号序列</p>
-<p><img src="https://pic.leetcode-cn.com/cde681df7861e934f517b6996ceabe7be7b9dbc6310f69ea6166461920272643-frame_00006.png" alt="frame_00006.png"></p>
-<p><strong>思路</strong></p>
-<p>左括号看成 +1，右括号看成 -1，那么就和上题的进出栈一样，共有 C2nnn+1\frac{C_{2n}^n}{n + 1} 种序列。</p>
-<h5 id="2-3-二叉树"><a href="#2-3-二叉树" class="headerlink" title="2.3 二叉树"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#23-%E4%BA%8C%E5%8F%89%E6%A0%91"></a>2.3 二叉树</h5><p><strong>题目描述</strong></p>
-<p><code>n + 1</code> 个叶子节点能够构成多少种形状不同的（国际）满二叉树</p>
-<p>（国际）满二叉树定义：如果一棵二叉树的结点要么是叶子结点，要么它有两个子结点，这样的树就是满二叉树。</p>
-<p><img src="https://pic.leetcode-cn.com/69112f87285d0db7f02e27a3794a92a9191880286f8019912858c4939999272b-frame_00008.png" alt="frame_00008.png"></p>
-<p><strong>思路</strong></p>
-<p>使用深度优先搜索这个满二叉树，向左扩展时标记为 +1，向右扩展时标记为 -1。</p>
-<p>由于每个非叶子节点都有两个左右子节点，所有它必然会先向左扩展，再向右扩展。总体下来，左右扩展将会形成匹配，即变成进出栈的题型。<code>n + 1</code> 个叶子结点会有 2n 次扩展，构成 C2nnn+1\frac{C_{2n}^n}{n + 1} 种形状不同的满二叉树。</p>
-<p><img src="https://pic.leetcode-cn.com/2c18d56f21ce18d9c25adb5645aa9557d21fc2bbcdad86e80c894703199761fb-frame_00009.png" alt="frame_00009.png"></p>
-<h5 id="2-4-电影购票"><a href="#2-4-电影购票" class="headerlink" title="2.4 电影购票"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#24-%E7%94%B5%E5%BD%B1%E8%B4%AD%E7%A5%A8"></a>2.4 电影购票</h5><p><strong>题目描述</strong></p>
-<p>电影票一张 50 coin，且售票厅没有 coin。m 个人各自持有 50 coin，n 个人各自持有 100 coin。</p>
-<p>则有多少种排队方式，可以让每个人都买到电影票。</p>
-<p><strong>思路</strong></p>
-<p>持有 50 coin 的人每次购票时不需要找零，并且可以帮助后面持有 100 coin 的人找零；而对于持有 100 coin 的人每次购票时需要找零，但 100 coin 对后面的找零没有任何作用。</p>
-<p>因此，相当于每个持有 100 coin 的人都需要和一个持有 50 coin 的人进行匹配。我们将持有 50 coin 的标记为 +1，持有 100 coin 的标记为 -1，此时又回到了进出栈问题。</p>
-<p>不同的是，m 并一定等于 n，且排队序列是一种排列，需要考虑先后顺序，例如各自持有 50 coin 的甲和乙的前后关系会造成两种不同的排队序列。所以，将会有 (Cm+nm−Cm+nm+1)∗m!∗n!(C_{m+n}^{m}-C_{m+n}^{m+1})*m!*n!</p>
-<p>第二项为什么是 Cm+nm+1C_{m+n}^{m+1}，其实很简单，我们每次把第一个前缀小于0 的前缀取反后，会造成 +1 多了一个而 -1 少了一个。这里 +1 有 m 个，-1 有 n 个，取反后 +1 变成 <code>m + 1</code> 个，-1 变成 <code>n - 1</code> 个，总和不变。</p>
-<h4 id="三、解题模板"><a href="#三、解题模板" class="headerlink" title="三、解题模板"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E4%B8%89%E3%80%81%E8%A7%A3%E9%A2%98%E6%A8%A1%E6%9D%BF"></a>三、解题模板</h4><p>最后我们需要来计算一下卡特兰数的通项 Cn=C2nnn+1C_{n} &#x3D; \frac{C_{2n}^n}{n + 1}</p>
-<p>卡特兰数满足以下递推式：</p>
-<p>C1=1C_{1}&#x3D;1，Cn=Cn−14∗n−2n+1C_{n} &#x3D; C_{n-1}\frac{4*n-2}{n+1}（证明从略）</p>
-<p>因此，我们可以通过递推来得到第 n 个卡特兰数。</p>
-<p><strong>代码</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="comment">// 打印前 n 个卡特兰数</span></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">ans</span> <span class="operator">=</span> BigInteger.valueOf(<span class="number">1</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;1:&quot;</span> + ans.toString());</span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">four</span> <span class="operator">=</span> BigInteger.valueOf(<span class="number">4</span>); </span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">one</span> <span class="operator">=</span> BigInteger.valueOf(<span class="number">1</span>);</span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">two</span> <span class="operator">=</span> BigInteger.valueOf(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="type">BigInteger</span> <span class="variable">bi</span> <span class="operator">=</span> BigInteger.valueOf(i);</span><br><span class="line">    ans = ans.multiply(four.multiply(bi).subtract(two)).divide(bi.add(one));</span><br><span class="line">    System.out.println(i + <span class="string">&quot;:&quot;</span> + ans.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打印前 n 个卡特兰数</span></span><br><span class="line">ans, n = <span class="number">1</span>, <span class="number">20</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;1:&quot;</span> + <span class="built_in">str</span>(ans))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, n + <span class="number">1</span>):</span><br><span class="line">    ans = ans * (<span class="number">4</span> * i - <span class="number">2</span>) // (i + <span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">str</span>(i) + <span class="string">&quot;:&quot;</span> + <span class="built_in">str</span>(ans))</span><br></pre></td></tr></table></figure>
-
-<p>需要注意的是，由于卡特兰数增长速度较快，当 n 等于 17 时，卡特兰数将会超过 int 最大值，造成溢出（Python 除外）。对于 Java 语言来说，可以使用 BigInteger 来计算大整数。</p>
-<p>那如果 +1 的数量不等于 -1 的数量呢，如前面提到的电影购票问题。此时 Cn=Cm+nm−Cm+nm+1C_{n}&#x3D;C_{m+n}^{m}-C_{m+n}^{m+1}，不是卡特兰数的通项，也就不能够继续使用原有的递推性质。</p>
-<p>那就直接推呗。</p>
-<p>Cn=Cm+nm−Cm+nm+1=(m+n)!m!∗n!−(m+n)!(m+1)!∗(n−1)!=(m+n)!m!∗n!−(m+n)!∗1m+1∗nm!∗n!=(m+n)!m!∗n!∗(1−1m+1∗n)=(m+n)!m!∗n!∗m+1−nm+1\begin{aligned}C_{n}&amp;&#x3D;C_{m+n}^{m}-C_{m+n}^{m+1}\\ &amp;&#x3D;\frac{(m+n)!}{m!*n!}-\frac{(m+n)!}{(m+1)!*(n-1)!}\\ &amp;&#x3D;\frac{(m+n)!}{m!*n!}-\frac{(m+n)!*\frac{1}{m+1}*n}{m!*n!}\\ &amp;&#x3D;\frac{(m+n)!}{m!*n!}*(1-\frac{1}{m+1}*n)\\ &amp;&#x3D;\frac{(m+n)!}{m!*n!}*\frac{m+1-n}{m+1}\\ \end{aligned}</p>
-<p>一般而言，为了降低难度，题目会要求我们计算排列数量，所以 An=Cn∗m!∗n!=(m+n)!∗m+1−nm+1A_{n}&#x3D;C_{n}*m!*n!&#x3D;(m+n)!*\frac{m+1-n}{m+1}</p>
-<h4 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BB%93"></a>四、总结</h4><p>基本上所有的卡特兰数问题经过一定的转换都可以还原成进出栈问题。因此，只要我们能够学会进出栈问题的解法，无论问题再怎么变化，本质还是不变的。</p>
-<p>卡特兰数问题中都会存在一种匹配关系，如进出栈匹配，括号匹配等，一旦计数问题中存在这种关系，那我们就需要去考虑这是否是卡特兰数问题。此外，我们还可以记住序列前四项：<code>1, 1, 2, 5</code>，这些将有利于我们联想到卡特兰数。</p>
-<p>目前，LeetCode 已经出现一道卡特兰数问题 <a href="https://leetcode-cn.com/problems/handshakes-that-dont-cross/">1259. 不相交的握手</a>，这也是这篇文章编写的原因之一。同时，近年某巴巴，某讯的笔试题中也有出现过这类题目，无非将背景换成买烧饼，借书排队等，相信这些都难不倒读者。</p>
-<h4 id="五、扩展"><a href="#五、扩展" class="headerlink" title="五、扩展"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E4%BA%94%E3%80%81%E6%89%A9%E5%B1%95"></a>五、扩展</h4><p>最后留一道比较有意思的卡特兰数问题，欢迎读者留言，提出自己的看法。</p>
-<p>8 个高矮不同的人需要排成两队，每队 4 个人。其中，每排都是从低到高排列，且第二排的第 i 个人比第一排中第 i 个人高，则有多少种排队方式。</p>
-<hr>
-<p>以 1 2 3 4 5 6 7 8 表示8个人升高，陆续为这8个人排队，排到第一队记为0，排到第二队记为1.<br>观察两个界，即 00001111 和 01010101分别对应排队：<br>观察紧迫界，01 01 01 01 ，拥有特征（1） 任意前缀 0 的个树大于1的个数，特征（2）每两个作为一对，有左0右1的特征。具备卡特兰数特征。1可以和后面的0交换位置，1不可以和前面的0交换位置。解即卡特兰数</p>
-<h1 id="01背包一维优化倒序更新问题"><a href="#01背包一维优化倒序更新问题" class="headerlink" title="01背包一维优化倒序更新问题"></a>01背包一维优化倒序更新问题</h1><p>一维01背包为什么倒序：</p>
-<p>我们每次计算dp[j] (即dp[i][j]) 的时候都会需要dp[j-w[i]] (即dp[i-1][j-w[i]])的值。因为j-w[i]比j小，所以如果我们正序计算，那么dp[j-w[i]]就已经更新了 (即dp[i][j-w[i]])，与状态转移方程不符。</p>
-<p>如果重量是负数，怎么处理？：</p>
-<p>如果重量是负数，那么上述状态转移方程中j-w[i]就会比j大，为避免先更新dp[j-w[i]]我们只能正序更新数组。<br>example:[<a href="http://poj.org/problem?id=2184%5D">http://poj.org/problem?id=2184]</a><br>题意：给你n头奶牛，每头奶牛都有一个智商和情商，在选出的x头奶牛智商和与情商和都大于等于0的情况下求智商总和与情商总和的最大值。</p>
-<p>思路：以智商或者情商为价值，另一个为重量，就是典型的01背包问题，首先重量为正数时就是正常的01背包，但重量为负数时由于下标不能为负，我们需要增加数组长度。也就是把坐标0向正方向移动：-100000…0…100000 –&gt; 0…100000…200000。dp[100000]设为0，最后扫一遍正数区间[100000, 200001]更新一个最大值即可。<br>N, H &#x3D; 200000, 100000<br>dp &#x3D; [-float(“inf”)] * (N+1)<br>dp[H] &#x3D; 0<br>w &#x3D; [-5, 8, 6, 2, -8]<br>v &#x3D; [7, -6, -3, 1, -5]<br>n &#x3D; 5</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">for i in range(n):</span><br><span class="line">    if w[i] &gt; 0://把第二层循环遍历展开分类讨论</span><br><span class="line">        for j in range(N, w[i]-1, -1):</span><br><span class="line">            dp[j] = max(dp[j], dp[j-w[i]] + v[i])</span><br><span class="line">    else:</span><br><span class="line">        for j in range(0, N+w[i]+1):</span><br><span class="line">            dp[j] = max(dp[j], dp[j-w[i]] + v[i])</span><br><span class="line"></span><br><span class="line">res = 0</span><br><span class="line">for j in range(H, N+1)://在正情况中遍历最大</span><br><span class="line">    if dp[j] &gt;= 0:</span><br><span class="line">        res = max(res, dp[j]+j-H)//情商+智商和-前移的1000</span><br><span class="line">print(res)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>技术</category>
-        <category>算法类</category>
-      </categories>
-      <tags>
-        <tag>acm</tag>
-        <tag>算法</tag>
-        <tag>训练记录</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2023/06/25/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Turned out -later</title>
     <url>/2023/07/27/Turned%20out%20-later/</url>
     <content><![CDATA[<p>​​*这是一个号主狂草假想的平行宇宙，各种设定会与原作有所出入，两人前期都会有一定的ooc，看下去就知道原因了</p>
@@ -367,5 +141,231 @@ git config --global user.email &quot;你的gitHub 邮箱&quot;
     <title>blog</title>
     <url>/2023/07/20/blog-1/</url>
     <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>win11 搭建hexo+github以ayer为主题的个人博客</title>
+    <url>/2023/06/26/blog/</url>
+    <content><![CDATA[<hr>
+<pre><code>本教程针对的主题是Ayer,主播建议是选好自己喜欢的主题后再进入看教程。
+博客和主题安装部分通用
+ayer调教部分以及遇到的bug可供参考
+</code></pre>
+<hr>
+<h3 id="参考的教程"><a href="#参考的教程" class="headerlink" title="参考的教程"></a>参考的教程</h3><ol>
+<li><p><a href="https://hexo.io/zh-cn/docs/index.html">hexo官方文档</a> 必看官方文档</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/60578464">知乎教程</a>大部分步骤来自这里，<del>一部分懒得打字会照抄，</del>主播会省略诸如github注册操作、使用英文名等等程序员基本素养问题，<strong>只提及主要步骤做记录</strong>,有疑问可以具体查看这里</p>
+</li>
+<li><p><a href="https://shen-yu.gitee.io/2019/ayer/">Ayer主页说明</a>主页个性化设置</p>
+</li>
+<li><p>*<a href="https://www.bilibili.com/video/BV1KD4y1p7Kg/">B站教程github打包式建站</a>github比较流畅的小伙伴可以试试这个</p>
+</li>
+</ol>
+<p><em>碎碎念</em>：主播wsl2和codespace都试过了，能成功搭建博客但是部署theme都有大大小小的问题，最终win11本地成功搭建模板化的主题，目前商在个性化修改中。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1.环境准备"></a>1.环境准备</h2><p>hexo的安装前提是</p>
+<ul>
+<li><p><a href="nodejs.org/zh-cn">Node.js</a>   nodejs.org&#x2F;zh-cn(安装时自带npm平台)</p>
+</li>
+<li><p><a href="https://git-scm.com/downloads">Git</a>  <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a><br>（当然以上都可以使用镜像站点下载）</p>
+</li>
+<li><p><em>说明：</em><br> 如果你细心的看了官方文档那么你会发现它会提及<code>Node.js 版本需不低于 10.13，建议使用 Node.js 12.0 及以上版本</code>,以及后面附带了一张hexo与Node.js版本一一对应的表格。本人的经验是可以先一律无脑最新版，大部分旧版都兼容。若主题有特殊版本要求建议按照主题的要求来。<del>虽然我没有那么做</del></p>
+</li>
+</ul>
+<p>下载 Node.js 和 Git 程序并安装，一路点 “下一步” 按默认配置完成安装。</p>
+<p>安装完成后，Win+R 输入 cmd 并打开，依次输入 node -v、npm -v 和 git –version 并回车，如下图出现程序版本号即可。</p>
+<h2 id="2-安装hexo"><a href="#2-安装hexo" class="headerlink" title="2.安装hexo"></a>2.安装hexo</h2><p>首先你需要准备一个<strong>完全空白的文件夹</strong>（本文假设为blog）来存放hexo的程序文件。新建好后在该文件夹空白处右键选择<code>Git Bash Here</code>,这个选项可能藏在win11的<code>显示更多选项</code>。</p>
+<p>npm一键安装hexo程序指令：</p>
+<hr>
+<pre><code>npm install -g hexo-cli
+</code></pre>
+<hr>
+<p>如果你是mac用户需要<strong>sudo（管理员权限）</strong>来操作，例如：</p>
+<hr>
+<pre><code>sudo npm install -g hexo-cli
+</code></pre>
+<hr>
+<p>安装时长视网络环境而定，可以考虑挂加速器，请耐心等待</p>
+<h2 id="3-link（链接）github"><a href="#3-link（链接）github" class="headerlink" title="3.link（链接）github"></a>3.link（链接）github</h2><p>首先你已经有了一个github的免费账户并且完成了一系列验证。</p>
+<p>然后回到你的blog文件夹，依旧是右键<code>Git Bash Here</code>进入到terminal，设置用户名和邮箱；</p>
+<hr>
+<pre><code>git config --global user.name &quot;你的gitHub 用户名&quot;
+git config --global user.email &quot;你的gitHub 邮箱&quot;
+（替换双引号内容）
+</code></pre>
+<hr>
+<ul>
+<li><em>说明：</em><br> 如果你遇到了<code>error: key does not contain a section: xxx</code>的报错，你可以尝试自己手写命令并输入，或者输入<code>git config --global --edit</code>手动编辑配置文件并保存。</li>
+</ul>
+<p><strong>然后创建SSH密匙</strong>，无脑回车到程序结束：</p>
+<hr>
+<pre><code>ssh-keygen -t rsa -C &quot;你的gitHub 邮箱&quot;
+</code></pre>
+<hr>
+<p>完成后，登录github——&gt;选择右侧边栏的总setting——&gt;选择左侧边栏的SSH and GPG keys——&gt;选择New SSH keys——&gt;title取名并且附上——&gt;</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>web类</category>
+      </categories>
+      <tags>
+        <tag>blog</tag>
+        <tag>hexo</tag>
+        <tag>教程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>各种使用时新晋语法函数</title>
+    <url>/2023/07/12/c++_grammer_record_/</url>
+    <content><![CDATA[<h1 id="new-int-m"><a href="#new-int-m" class="headerlink" title="new int[m]"></a>new int[m]</h1><p>例：p[n]为struct,有*time，p[n].time&#x3D;new int[m],time变成int 数组，有m项</p>
+<h1 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h1><p>for(auto t:res)cout&lt;&lt;t&lt;&lt;’ ‘;<br>auto res&#x3D;get_di(X);【vector<int> get_di(int n)】</p>
+<h1 id="for（int-i-x3D-n-1-i-i–）"><a href="#for（int-i-x3D-n-1-i-i–）" class="headerlink" title="for（int i&#x3D;n-1;~i;i–）"></a>for（int i&#x3D;n-1;~i;i–）</h1><p>在for循环中，<del>i的作用是判断i是否为-1。因为-1的二进制表示是全1，所以</del>(-1)就是全0，也就是0。所以当i等于-1时，~i就为0，循环就会终止。这样可以避免使用&#x3D;&#x3D;或!&#x3D;运算符来比较i和-1。</p>
+<h1 id="const-double-eps-x3D-1e-6"><a href="#const-double-eps-x3D-1e-6" class="headerlink" title="const double eps&#x3D;1e-6;"></a>const double eps&#x3D;1e-6;</h1><p>判断浮点数是否为零或者小于零时由于浮点数特性需要判断它是否小于一个很小的数</p>
+<h1 id="struct结构体内比较格式"><a href="#struct结构体内比较格式" class="headerlink" title="struct结构体内比较格式"></a>struct结构体内比较格式</h1><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">node</span>&#123;</span><br><span class="line">    <span class="type">int</span> l,r;</span><br><span class="line">    <span class="type">bool</span> <span class="keyword">operator</span>&lt;(<span class="type">const</span> node &amp;w)<span class="type">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> r&lt;w.r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="amp-的传递区别"><a href="#amp-的传递区别" class="headerlink" title="* &amp;的传递区别"></a>* &amp;的传递区别</h1><h1 id="vector传递-高精度计算"><a href="#vector传递-高精度计算" class="headerlink" title="vector传递 高精度计算"></a>vector<int>传递 高精度计算</h1><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vector&lt;int&gt; mul(vector&lt;int&gt; &amp;A, int b)</span><br><span class="line">&#123;</span><br><span class="line">    vector&lt;int&gt; C;</span><br><span class="line">    int t = 0;</span><br><span class="line">    for (int i = 0; i &lt; A.size() || t; i ++ )</span><br><span class="line">    &#123;</span><br><span class="line">        if (i &lt; A.size()) t += A[i] * b;</span><br><span class="line">        C.push_back(t % 10);</span><br><span class="line">        t /= 10;</span><br><span class="line">    &#125;</span><br><span class="line">    while (C.size() &gt; 1 &amp;&amp; C.back() == 0) C.pop_back();</span><br><span class="line">    return C;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    string a;</span><br><span class="line">    int b;</span><br><span class="line">    cin &gt;&gt; a &gt;&gt; b;</span><br><span class="line">    vector&lt;int&gt; A;</span><br><span class="line">    for (int i = a.size() - 1; i &gt;= 0; i -- ) A.push_back(a[i] - &#x27;0&#x27;);</span><br><span class="line">    auto C = mul(A, b);</span><br><span class="line">    for (int i = C.size() - 1; i &gt;= 0; i -- ) printf(&quot;%d&quot;, C[i]);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="lower-bound-stk-begin-stk-end-arr-i-x3D-arr-i"><a href="#lower-bound-stk-begin-stk-end-arr-i-x3D-arr-i" class="headerlink" title="*lower_bound(stk.begin(), stk.end(), arr[i]) &#x3D; arr[i]"></a>*lower_bound(stk.begin(), stk.end(), arr[i]) &#x3D; arr[i]</h1><p>它返回一个指向范围 [first, last) 中第一个不小于 val 的元素的迭代器<br>可以替代二分查找</p>
+<h1 id="priority-queue-lt-int-vector-greater-gt-heap"><a href="#priority-queue-lt-int-vector-greater-gt-heap" class="headerlink" title="priority_queue&lt;int,vector,greater&gt; heap;"></a>priority_queue&lt;int,vector<int>,greater<int>&gt; heap;</h1><p>优先队列是一种特殊的队列，它的元素被赋予优先级，当访问元素时，具有最高级优先级的元素先被访问12。在C++中，priority_queue是一个容器适配器，它提供了常数时间查找默认情况下最大（或最小）元素的功能，但以对数时间为代价进行插入和提取。<br>        empty()   如果队列为空返回真</p>
+<pre><code>    pop()       删除队顶元素
+
+    push()     入队一个元素
+
+    size()      返回优先队列中拥有的元素个数
+
+    top()        返回优先队列队顶元素
+</code></pre>
+<p>默认情况下，priority_queue是一个大根堆，这意味着根节点的值大于或等于子节点的值,<br>如果想要使用小根堆，可以将priority_queue的第三个参数设置为greater<int>。</p>
+<p>大根堆是一种完全二叉树，其中所有父节点的值都比左右孩子的值大。小根堆与大根堆相反，其中所有父节点的值都比左右孩子的值小。<br>大根堆例如：<br>          10<br>        &#x2F;    <br>       8      7<br>     &#x2F;   \   &#x2F;<br>    6     4 3</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">是默认的大根堆实现，<span class="built_in">top</span>()是当前优先队列的最大值</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> my_array[<span class="number">10</span>] = &#123;<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">-8</span>,<span class="number">10</span>,<span class="number">4</span>,<span class="number">-7</span>,<span class="number">-6</span>&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    priority_queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        q.<span class="built_in">push</span>(my_array[i]);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;order: &quot;</span> &lt;&lt; q.<span class="built_in">top</span>() &lt;&lt; endl;</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>   小根堆例如<br>          1<br>        &#x2F;    <br>       2      3<br>     &#x2F;   \   &#x2F;<br>    4     5 6</p>
+<h1 id="cout-lt-lt-fixed-lt-lt-setprecison-15-lt-lt-dp-a"><a href="#cout-lt-lt-fixed-lt-lt-setprecison-15-lt-lt-dp-a" class="headerlink" title="cout&lt;&lt;fixed&lt;&lt;setprecison(15)&lt;&lt;dp[a]"></a>cout&lt;&lt;fixed&lt;&lt;setprecison(15)&lt;&lt;dp[a]</h1><p>精确输出小数点后几位</p>
+<h1 id="while-cin-gt-gt-a-gt-gt-b-gt-gt-c-a-b-c-w-a-b-x3D-c"><a href="#while-cin-gt-gt-a-gt-gt-b-gt-gt-c-a-b-c-w-a-b-x3D-c" class="headerlink" title="while (cin &gt;&gt; a &gt;&gt; b &gt;&gt; c, a || b || c)w[a][b] &#x3D; c;"></a>while (cin &gt;&gt; a &gt;&gt; b &gt;&gt; c, a || b || c)w[a][b] &#x3D; c;</h1><p>用于输入多组数据且全为0时表示结束的输入</p>
+<h1 id="lower-bound-、upper-bound-、equal-range-以及-binary-search"><a href="#lower-bound-、upper-bound-、equal-range-以及-binary-search" class="headerlink" title="lower_bound()、upper_bound()、equal_range() 以及 binary_search()"></a>lower_bound()、upper_bound()、equal_range() 以及 binary_search()</h1><h2 id="lower-bound"><a href="#lower-bound" class="headerlink" title="lower_bound()"></a><em>lower_bound()</em></h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">在 [first, last) 区域内查找不小于 val 的元素</span></span><br><span class="line"><span class="comment">ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last,</span></span><br><span class="line"><span class="comment">                             const T&amp; val);</span></span><br><span class="line"><span class="comment">//在 [first, last) 区域内查找第一个不符合 comp 规则的元素</span></span><br><span class="line"><span class="comment">ForwardIterator lower_bound (ForwardIterator first, ForwardIterator last,</span></span><br><span class="line"><span class="comment">                             const T&amp; val, Compare comp);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>     <span class="comment">// std::cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>    <span class="comment">// std::lower_bound</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span>       <span class="comment">// std::vector</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//以普通函数的方式定义查找规则</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">mycomp</span><span class="params">(<span class="type">int</span> i,<span class="type">int</span> j)</span> </span>&#123; <span class="keyword">return</span> i&gt;j; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//以函数对象的形式定义查找规则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">mycomp2</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">const</span> <span class="type">int</span>&amp; i, <span class="type">const</span> <span class="type">int</span>&amp; j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i&gt;j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">5</span>] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line">    <span class="comment">//从 a 数组中找到第一个不小于 3 的元素</span></span><br><span class="line">    <span class="type">int</span> *p = <span class="built_in">lower_bound</span>(a, a + <span class="number">5</span>, <span class="number">3</span>);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;*p = &quot;</span> &lt;&lt; *p &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; myvector&#123; <span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span> &#125;;</span><br><span class="line">    <span class="comment">//根据 mycomp2 规则，从 myvector 容器中找到第一个违背 mycomp2 规则的元素</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;::iterator iter = <span class="built_in">lower_bound</span>(myvector.<span class="built_in">begin</span>(), myvector.<span class="built_in">end</span>(),<span class="number">3</span>,<span class="built_in">mycomp2</span>());</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;*iter = &quot;</span> &lt;&lt; *iter;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="upper-bound"><a href="#upper-bound" class="headerlink" title="upper_bound()"></a><em>upper_bound()</em></h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">//查找[first, last)区域中第一个大于 val 的元素。</span></span><br><span class="line"><span class="comment">ForwardIterator upper_bound (ForwardIterator first, ForwardIterator last,</span></span><br><span class="line"><span class="comment">                             const T&amp; val);</span></span><br><span class="line"><span class="comment">//查找[first, last)区域中第一个不符合 comp 规则的元素</span></span><br><span class="line"><span class="comment">ForwardIterator upper_bound (ForwardIterator first, ForwardIterator last,</span></span><br><span class="line"><span class="comment">                             const T&amp; val, Compare comp);</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>     <span class="comment">// std::cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span>    <span class="comment">// std::upper_bound</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span>       <span class="comment">// std::vector</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">//以普通函数的方式定义查找规则</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">mycomp</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> j)</span> </span>&#123; <span class="keyword">return</span> i &gt; j; &#125;</span><br><span class="line"><span class="comment">//以函数对象的形式定义查找规则</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">mycomp2</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">const</span> <span class="type">int</span>&amp; i, <span class="type">const</span> <span class="type">int</span>&amp; j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i &gt; j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">5</span>] = &#123; <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span> &#125;;</span><br><span class="line">    <span class="comment">//从 a 数组中找到第一个大于 3 的元素</span></span><br><span class="line">    <span class="type">int</span> *p = <span class="built_in">upper_bound</span>(a, a + <span class="number">5</span>, <span class="number">3</span>);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;*p = &quot;</span> &lt;&lt; *p &lt;&lt; endl;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; myvector&#123; <span class="number">4</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span> &#125;;</span><br><span class="line">    <span class="comment">//根据 mycomp2 规则，从 myvector 容器中找到第一个违背 mycomp2 规则的元素</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;::iterator iter = <span class="built_in">upper_bound</span>(myvector.<span class="built_in">begin</span>(), myvector.<span class="built_in">end</span>(), <span class="number">3</span>, <span class="built_in">mycomp2</span>());</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;*iter = &quot;</span> &lt;&lt; *iter;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="equal-range"><a href="#equal-range" class="headerlink" title="equal_range()"></a><em>equal_range()</em></h2><p><a href="http://c.biancheng.net/view/7531.html">http://c.biancheng.net/view/7531.html</a></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="binary-search"><a href="#binary-search" class="headerlink" title="binary_search()"></a><em>binary_search()</em></h2><p><a href="http://c.biancheng.net/view/7537.html">http://c.biancheng.net/view/7537.html</a></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+        <category>算法类</category>
+      </categories>
+      <tags>
+        <tag>acm</tag>
+        <tag>算法</tag>
+        <tag>训练记录</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2023/06/25/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Summer training daily record 7.12~7.18</title>
+    <url>/2023/07/12/train_record_7.12/</url>
+    <content><![CDATA[<h1 id="图论构造-Tenzing-and-His-Animal-Friends"><a href="#图论构造-Tenzing-and-His-Animal-Friends" class="headerlink" title="图论构造 Tenzing and His Animal Friends"></a>图论构造 Tenzing and His Animal Friends</h1><p><a href="https://codeforces.com/problemset/problem/1842/D">https://codeforces.com/problemset/problem/1842/D</a><br><strong>看不懂的题面部分</strong>：u,v,y的意义。<br>理解为u或者v分开单独玩的时间不超过y。一共m组.</p>
+<p>思路总结：<br>求最长时间的情况下，由于n一定不参加聚会，所以和n关联的m最大可以参加v(m-&gt;n)的时间，类推每个点最长参加时长为它到n的最短路。当1,n不相连则无上限（样例如果没有2 5 1 那么2 3可以无限参加派对）。</p>
+<p>接着构造聚会的方案。di为1-&gt;i的最短路，仅在di-&gt;dn时间选择i,使得（u,v）满足du-dv&lt;&#x3D;y。即每次选出最短路的点，之后加入</p>
+<p>另一个是dijkstra构造，即每次取最短点。设存在两个集合S,T，集合S 中为还能参加聚会的点，集合 T 中为不能再参加聚会的点。最初 T 中仅n 一个元素。联系到上述每个点最大参会总时长的得出方式，我们每次从 S 中选择一个参会时间上限最短的点 x，让S 中的所有点都参加一次聚会，时长为 x 的参会时间上限。一直这样进行下去，直到点 1不在 S 当中。</p>
+<h1 id="CF876-div2-C-Insert-Zero-and-Invert-Prefix-偏移量-贪心"><a href="#CF876-div2-C-Insert-Zero-and-Invert-Prefix-偏移量-贪心" class="headerlink" title="CF876(div2)-C-Insert Zero and Invert Prefix(偏移量+贪心)"></a>CF876(div2)-C-Insert Zero and Invert Prefix(偏移量+贪心)</h1><p><a href="https://codeforces.com/problemset/problem/1839/C">https://codeforces.com/problemset/problem/1839/C</a></p>
+<p>考察的部分：特殊情况贪心+偏移量<br>具体解答<a href="https://zhuanlan.zhihu.com/p/634514907">https://zhuanlan.zhihu.com/p/634514907</a><br><strong>偏移量cost解释</strong>：当做逆操作时候，数组前面的书均取逆，cost记录奇偶次，并且与原数组的数操作得出数现在的状态</p>
+<p>该评论区有提及从左向右扫的逆向思路：形如1111……0的串，删去最后的0并反转所有的1<br>不断重复<br>例如<br>    1 0 0 1 1 0<br>      x<br>    0 0 1 1 0<br>            x<br>    1 1 0 0<br>        x<br>    0 0 0 </p>
+<ul>
+<li><input disabled="" type="checkbox"> 但是怎么变成代码呢emmmm<br>拆解操作思路<br><a href="https://zhuanlan.zhihu.com/p/636927276">https://zhuanlan.zhihu.com/p/636927276</a></li>
+</ul>
+<h1 id="CF-884-vp"><a href="#CF-884-vp" class="headerlink" title="CF 884 vp"></a>CF 884 vp</h1><h1 id="acwing-数学部分补充"><a href="#acwing-数学部分补充" class="headerlink" title="acwing 数学部分补充"></a>acwing 数学部分补充</h1><p>卡特兰数<br><a href="https://leetcode.cn/circle/article/lWYCzv/">https://leetcode.cn/circle/article/lWYCzv/</a></p>
+<h4 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E4%B8%80%E3%80%81%E5%BC%95%E8%A8%80"></a>一、引言</h4><p>卡特兰数（Catalan number）是<strong>组合数学</strong>中一个常出现在各种<strong>计数问题</strong>中的<strong>数列</strong>。</p>
+<p>数列的前几项为：<code>1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862，...</code></p>
+<p>本文将会选取几个经典的卡特兰问题，难度先易后难，带领读者逐个击破解决，最后给出相关的解题模板。</p>
+<h4 id="二、经典问题"><a href="#二、经典问题" class="headerlink" title="二、经典问题"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E4%BA%8C%E3%80%81%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98"></a>二、经典问题</h4><h5 id="2-1-进出栈序列"><a href="#2-1-进出栈序列" class="headerlink" title="2.1 进出栈序列"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#21-%E8%BF%9B%E5%87%BA%E6%A0%88%E5%BA%8F%E5%88%97"></a>2.1 进出栈序列</h5><p>这是一道<strong>最经典</strong>的入门级卡特兰数题目，如果能把这题看懂，相信后面的题目也能迎刃而解。</p>
+<p><strong>题目描述</strong></p>
+<p>n 个元素进栈序列为：<code>1，2，3，4，...，n</code>，则有多少种出栈序列</p>
+<p><strong>思路</strong></p>
+<p>我们将进栈表示为 +1，出栈表示为 -1，则 1 3 2 的出栈序列可以表示为：<code>+1 -1 +1 +1 -1 -1</code>。</p>
+<p><img src="https://pic.leetcode-cn.com/ed47ff3bb463fd4635707d47b2dbec7034141f798fb18b514170f4df39e9dd16-frame_00003.png" alt="frame_00003.png"></p>
+<p>根据栈本身的特点，每次出栈的时候，必定之前有元素入栈，即对于每个 -1 前面都有一个 +1 相对应。因此，出栈序列的<strong>所有前缀和</strong>必然大于等于 0，并且 +1 的数量<strong>等于</strong> -1 的数量。</p>
+<p>接下来让我们观察一下 n &#x3D; 3 的一种出栈序列：<code>+1 -1 -1 +1 -1 +1</code>。序列前三项和小于 0，显然这是个非法的序列。</p>
+<p>如果将<strong>第一个</strong>前缀和小于 0 的前缀，即前三项元素都进行取反，就会得到：<code>-1 +1 +1 +1 -1 +1</code>。此时有 <code>3 + 1</code> 个 +1 以及 <code>3 - 1</code> 个 -1。</p>
+<p>因为这个小于 0 的前缀和必然是 -1，且 -1 比 +1 多一个，取反后，-1 比 +1 少一个，则 +1 变为 n + 1 个，且 -1 变为 n - 1 个。进一步推广，对于 n 元素的每种非法出栈序列，都会对应一个含有 <code>n + 1</code> 个 +1 以及 <code>n - 1</code> 个 -1 的序列。</p>
+<p>如何证明这两种序列是一一对应的？</p>
+<p>假设非法序列为 A，对应的序列为 B。每个 A 只有一个”<strong>第一个前缀和小于 0 的前缀</strong>“，所以每个 A 只能产生一个 B。而每个 B 想要还原到 A，就需要找到”<strong>第一个前缀和大于 0 的前缀</strong>“，显然 B 也只能产生一个 A。</p>
+<p><img src="https://pic.leetcode-cn.com/846c04b60f59ab17deffce8e6c217732106f6865fb29d274665b1d956b47b8bd-frame_00011.png" alt="frame_00011.png"></p>
+<p>每个 B 都有 <code>n + 1</code> 个 +1 以及 <code>n - 1</code> 个 -1，因此 B 的数量为 C2nn+1C_{2n}^{n+1}，相当于在长度为 2n 的序列中找到 <code>n + 1</code> 个位置存放 +1。相应的，非法序列的数量也就等于 C2nn+1C_{2n}^{n+1}。</p>
+<p>出栈序列的总数量共有 C2nnC_{2n}^{n}，因此，合法的出栈序列的数量为 C2nn−C2nn+1=C2nnn+1C_{2n}^{n} - C_{2n}^{n+1} &#x3D; \frac{C_{2n}^n}{n + 1}。</p>
+<p>此时我们就得到了卡特兰数的通项 C2nnn+1\frac{C_{2n}^n}{n + 1}，至于具体如何计算结果将会在后面进行介绍。</p>
+<h5 id="2-2-括号序列"><a href="#2-2-括号序列" class="headerlink" title="2.2 括号序列"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#22-%E6%8B%AC%E5%8F%B7%E5%BA%8F%E5%88%97"></a>2.2 括号序列</h5><p><strong>题目描述</strong></p>
+<p>n 对括号，则有多少种 “括号匹配” 的括号序列</p>
+<p><img src="https://pic.leetcode-cn.com/cde681df7861e934f517b6996ceabe7be7b9dbc6310f69ea6166461920272643-frame_00006.png" alt="frame_00006.png"></p>
+<p><strong>思路</strong></p>
+<p>左括号看成 +1，右括号看成 -1，那么就和上题的进出栈一样，共有 C2nnn+1\frac{C_{2n}^n}{n + 1} 种序列。</p>
+<h5 id="2-3-二叉树"><a href="#2-3-二叉树" class="headerlink" title="2.3 二叉树"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#23-%E4%BA%8C%E5%8F%89%E6%A0%91"></a>2.3 二叉树</h5><p><strong>题目描述</strong></p>
+<p><code>n + 1</code> 个叶子节点能够构成多少种形状不同的（国际）满二叉树</p>
+<p>（国际）满二叉树定义：如果一棵二叉树的结点要么是叶子结点，要么它有两个子结点，这样的树就是满二叉树。</p>
+<p><img src="https://pic.leetcode-cn.com/69112f87285d0db7f02e27a3794a92a9191880286f8019912858c4939999272b-frame_00008.png" alt="frame_00008.png"></p>
+<p><strong>思路</strong></p>
+<p>使用深度优先搜索这个满二叉树，向左扩展时标记为 +1，向右扩展时标记为 -1。</p>
+<p>由于每个非叶子节点都有两个左右子节点，所有它必然会先向左扩展，再向右扩展。总体下来，左右扩展将会形成匹配，即变成进出栈的题型。<code>n + 1</code> 个叶子结点会有 2n 次扩展，构成 C2nnn+1\frac{C_{2n}^n}{n + 1} 种形状不同的满二叉树。</p>
+<p><img src="https://pic.leetcode-cn.com/2c18d56f21ce18d9c25adb5645aa9557d21fc2bbcdad86e80c894703199761fb-frame_00009.png" alt="frame_00009.png"></p>
+<h5 id="2-4-电影购票"><a href="#2-4-电影购票" class="headerlink" title="2.4 电影购票"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#24-%E7%94%B5%E5%BD%B1%E8%B4%AD%E7%A5%A8"></a>2.4 电影购票</h5><p><strong>题目描述</strong></p>
+<p>电影票一张 50 coin，且售票厅没有 coin。m 个人各自持有 50 coin，n 个人各自持有 100 coin。</p>
+<p>则有多少种排队方式，可以让每个人都买到电影票。</p>
+<p><strong>思路</strong></p>
+<p>持有 50 coin 的人每次购票时不需要找零，并且可以帮助后面持有 100 coin 的人找零；而对于持有 100 coin 的人每次购票时需要找零，但 100 coin 对后面的找零没有任何作用。</p>
+<p>因此，相当于每个持有 100 coin 的人都需要和一个持有 50 coin 的人进行匹配。我们将持有 50 coin 的标记为 +1，持有 100 coin 的标记为 -1，此时又回到了进出栈问题。</p>
+<p>不同的是，m 并一定等于 n，且排队序列是一种排列，需要考虑先后顺序，例如各自持有 50 coin 的甲和乙的前后关系会造成两种不同的排队序列。所以，将会有 (Cm+nm−Cm+nm+1)∗m!∗n!(C_{m+n}^{m}-C_{m+n}^{m+1})*m!*n!</p>
+<p>第二项为什么是 Cm+nm+1C_{m+n}^{m+1}，其实很简单，我们每次把第一个前缀小于0 的前缀取反后，会造成 +1 多了一个而 -1 少了一个。这里 +1 有 m 个，-1 有 n 个，取反后 +1 变成 <code>m + 1</code> 个，-1 变成 <code>n - 1</code> 个，总和不变。</p>
+<h4 id="三、解题模板"><a href="#三、解题模板" class="headerlink" title="三、解题模板"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E4%B8%89%E3%80%81%E8%A7%A3%E9%A2%98%E6%A8%A1%E6%9D%BF"></a>三、解题模板</h4><p>最后我们需要来计算一下卡特兰数的通项 Cn=C2nnn+1C_{n} &#x3D; \frac{C_{2n}^n}{n + 1}</p>
+<p>卡特兰数满足以下递推式：</p>
+<p>C1=1C_{1}&#x3D;1，Cn=Cn−14∗n−2n+1C_{n} &#x3D; C_{n-1}\frac{4*n-2}{n+1}（证明从略）</p>
+<p>因此，我们可以通过递推来得到第 n 个卡特兰数。</p>
+<p><strong>代码</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.math.BigInteger;</span><br><span class="line"><span class="comment">// 打印前 n 个卡特兰数</span></span><br><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">ans</span> <span class="operator">=</span> BigInteger.valueOf(<span class="number">1</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;1:&quot;</span> + ans.toString());</span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">four</span> <span class="operator">=</span> BigInteger.valueOf(<span class="number">4</span>); </span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">one</span> <span class="operator">=</span> BigInteger.valueOf(<span class="number">1</span>);</span><br><span class="line"><span class="type">BigInteger</span> <span class="variable">two</span> <span class="operator">=</span> BigInteger.valueOf(<span class="number">2</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="type">BigInteger</span> <span class="variable">bi</span> <span class="operator">=</span> BigInteger.valueOf(i);</span><br><span class="line">    ans = ans.multiply(four.multiply(bi).subtract(two)).divide(bi.add(one));</span><br><span class="line">    System.out.println(i + <span class="string">&quot;:&quot;</span> + ans.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打印前 n 个卡特兰数</span></span><br><span class="line">ans, n = <span class="number">1</span>, <span class="number">20</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;1:&quot;</span> + <span class="built_in">str</span>(ans))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>, n + <span class="number">1</span>):</span><br><span class="line">    ans = ans * (<span class="number">4</span> * i - <span class="number">2</span>) // (i + <span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">str</span>(i) + <span class="string">&quot;:&quot;</span> + <span class="built_in">str</span>(ans))</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，由于卡特兰数增长速度较快，当 n 等于 17 时，卡特兰数将会超过 int 最大值，造成溢出（Python 除外）。对于 Java 语言来说，可以使用 BigInteger 来计算大整数。</p>
+<p>那如果 +1 的数量不等于 -1 的数量呢，如前面提到的电影购票问题。此时 Cn=Cm+nm−Cm+nm+1C_{n}&#x3D;C_{m+n}^{m}-C_{m+n}^{m+1}，不是卡特兰数的通项，也就不能够继续使用原有的递推性质。</p>
+<p>那就直接推呗。</p>
+<p>Cn=Cm+nm−Cm+nm+1=(m+n)!m!∗n!−(m+n)!(m+1)!∗(n−1)!=(m+n)!m!∗n!−(m+n)!∗1m+1∗nm!∗n!=(m+n)!m!∗n!∗(1−1m+1∗n)=(m+n)!m!∗n!∗m+1−nm+1\begin{aligned}C_{n}&amp;&#x3D;C_{m+n}^{m}-C_{m+n}^{m+1}\\ &amp;&#x3D;\frac{(m+n)!}{m!*n!}-\frac{(m+n)!}{(m+1)!*(n-1)!}\\ &amp;&#x3D;\frac{(m+n)!}{m!*n!}-\frac{(m+n)!*\frac{1}{m+1}*n}{m!*n!}\\ &amp;&#x3D;\frac{(m+n)!}{m!*n!}*(1-\frac{1}{m+1}*n)\\ &amp;&#x3D;\frac{(m+n)!}{m!*n!}*\frac{m+1-n}{m+1}\\ \end{aligned}</p>
+<p>一般而言，为了降低难度，题目会要求我们计算排列数量，所以 An=Cn∗m!∗n!=(m+n)!∗m+1−nm+1A_{n}&#x3D;C_{n}*m!*n!&#x3D;(m+n)!*\frac{m+1-n}{m+1}</p>
+<h4 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BB%93"></a>四、总结</h4><p>基本上所有的卡特兰数问题经过一定的转换都可以还原成进出栈问题。因此，只要我们能够学会进出栈问题的解法，无论问题再怎么变化，本质还是不变的。</p>
+<p>卡特兰数问题中都会存在一种匹配关系，如进出栈匹配，括号匹配等，一旦计数问题中存在这种关系，那我们就需要去考虑这是否是卡特兰数问题。此外，我们还可以记住序列前四项：<code>1, 1, 2, 5</code>，这些将有利于我们联想到卡特兰数。</p>
+<p>目前，LeetCode 已经出现一道卡特兰数问题 <a href="https://leetcode-cn.com/problems/handshakes-that-dont-cross/">1259. 不相交的握手</a>，这也是这篇文章编写的原因之一。同时，近年某巴巴，某讯的笔试题中也有出现过这类题目，无非将背景换成买烧饼，借书排队等，相信这些都难不倒读者。</p>
+<h4 id="五、扩展"><a href="#五、扩展" class="headerlink" title="五、扩展"></a><a href="https://leetcode.cn/circle/article/lWYCzv/#%E4%BA%94%E3%80%81%E6%89%A9%E5%B1%95"></a>五、扩展</h4><p>最后留一道比较有意思的卡特兰数问题，欢迎读者留言，提出自己的看法。</p>
+<p>8 个高矮不同的人需要排成两队，每队 4 个人。其中，每排都是从低到高排列，且第二排的第 i 个人比第一排中第 i 个人高，则有多少种排队方式。</p>
+<hr>
+<p>以 1 2 3 4 5 6 7 8 表示8个人升高，陆续为这8个人排队，排到第一队记为0，排到第二队记为1.<br>观察两个界，即 00001111 和 01010101分别对应排队：<br>观察紧迫界，01 01 01 01 ，拥有特征（1） 任意前缀 0 的个树大于1的个数，特征（2）每两个作为一对，有左0右1的特征。具备卡特兰数特征。1可以和后面的0交换位置，1不可以和前面的0交换位置。解即卡特兰数</p>
+<h1 id="01背包一维优化倒序更新问题"><a href="#01背包一维优化倒序更新问题" class="headerlink" title="01背包一维优化倒序更新问题"></a>01背包一维优化倒序更新问题</h1><p>一维01背包为什么倒序：</p>
+<p>我们每次计算dp[j] (即dp[i][j]) 的时候都会需要dp[j-w[i]] (即dp[i-1][j-w[i]])的值。因为j-w[i]比j小，所以如果我们正序计算，那么dp[j-w[i]]就已经更新了 (即dp[i][j-w[i]])，与状态转移方程不符。</p>
+<p>如果重量是负数，怎么处理？：</p>
+<p>如果重量是负数，那么上述状态转移方程中j-w[i]就会比j大，为避免先更新dp[j-w[i]]我们只能正序更新数组。<br>example:[<a href="http://poj.org/problem?id=2184%5D">http://poj.org/problem?id=2184]</a><br>题意：给你n头奶牛，每头奶牛都有一个智商和情商，在选出的x头奶牛智商和与情商和都大于等于0的情况下求智商总和与情商总和的最大值。</p>
+<p>思路：以智商或者情商为价值，另一个为重量，就是典型的01背包问题，首先重量为正数时就是正常的01背包，但重量为负数时由于下标不能为负，我们需要增加数组长度。也就是把坐标0向正方向移动：-100000…0…100000 –&gt; 0…100000…200000。dp[100000]设为0，最后扫一遍正数区间[100000, 200001]更新一个最大值即可。<br>N, H &#x3D; 200000, 100000<br>dp &#x3D; [-float(“inf”)] * (N+1)<br>dp[H] &#x3D; 0<br>w &#x3D; [-5, 8, 6, 2, -8]<br>v &#x3D; [7, -6, -3, 1, -5]<br>n &#x3D; 5</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">for i in range(n):</span><br><span class="line">    if w[i] &gt; 0://把第二层循环遍历展开分类讨论</span><br><span class="line">        for j in range(N, w[i]-1, -1):</span><br><span class="line">            dp[j] = max(dp[j], dp[j-w[i]] + v[i])</span><br><span class="line">    else:</span><br><span class="line">        for j in range(0, N+w[i]+1):</span><br><span class="line">            dp[j] = max(dp[j], dp[j-w[i]] + v[i])</span><br><span class="line"></span><br><span class="line">res = 0</span><br><span class="line">for j in range(H, N+1)://在正情况中遍历最大</span><br><span class="line">    if dp[j] &gt;= 0:</span><br><span class="line">        res = max(res, dp[j]+j-H)//情商+智商和-前移的1000</span><br><span class="line">print(res)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>技术</category>
+        <category>算法类</category>
+      </categories>
+      <tags>
+        <tag>acm</tag>
+        <tag>算法</tag>
+        <tag>训练记录</tag>
+      </tags>
   </entry>
 </search>
