@@ -6,7 +6,7 @@
   <link href="http://mieopm.github.io/atom.xml" rel="self"/>
   
   <link href="http://mieopm.github.io/"/>
-  <updated>2023-07-26T16:42:52.523Z</updated>
+  <updated>2023-09-22T14:35:49.174Z</updated>
   <id>http://mieopm.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Turned out -later</title>
+    <link href="http://mieopm.github.io/2023/09/22/%E7%AC%AC%E9%9B%B6%E7%AB%A0/"/>
+    <id>http://mieopm.github.io/2023/09/22/%E7%AC%AC%E9%9B%B6%E7%AB%A0/</id>
+    <published>2023-09-22T13:52:00.000Z</published>
+    <updated>2023-09-22T14:35:49.174Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;因为是车站的附属茶馆，所以我们接待的客人常常是处于路途中的行人。于是比起照顾住在车站附近的老顾客的个人口味，我们会提供更加纷杂多变的菜品和茶品来满足形形色色的行人多多样样的需求。当然，我们的菜单永远会保留基本好评的热门菜品，但它们不会成为我们餐厅的招牌标签。我开店之初原本是</summary>
+        
+      
+    
+    
+    
+    <category term="创作" scheme="http://mieopm.github.io/categories/%E5%88%9B%E4%BD%9C/"/>
+    
+    <category term="文字" scheme="http://mieopm.github.io/categories/%E5%88%9B%E4%BD%9C/%E6%96%87%E5%AD%97/"/>
+    
+    
+    <category term="待填坑" scheme="http://mieopm.github.io/tags/%E5%BE%85%E5%A1%AB%E5%9D%91/"/>
+    
+    <category term="红茶馆" scheme="http://mieopm.github.io/tags/%E7%BA%A2%E8%8C%B6%E9%A6%86/"/>
+    
+    <category term="原创" scheme="http://mieopm.github.io/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+  </entry>
   
   <entry>
     <title>Turned out -later</title>
@@ -51,15 +82,33 @@
   </entry>
   
   <entry>
-    <title>blog</title>
+    <title>Summer training daily record 7.19~7.22</title>
     <link href="http://mieopm.github.io/2023/07/20/blog-1/"/>
     <id>http://mieopm.github.io/2023/07/20/blog-1/</id>
     <published>2023-07-20T03:37:39.000Z</published>
-    <updated>2023-07-20T03:37:39.404Z</updated>
+    <updated>2023-08-05T05:35:55.981Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;概率与期望&quot;&gt;&lt;a href=&quot;#概率与期望&quot; class=&quot;headerlink&quot; title=&quot;概率与期望&quot;&gt;&lt;/a&gt;概率与期望&lt;/h1&gt;&lt;p&gt;&lt;a</summary>
+        
+      
     
     
     
+    <category term="技术" scheme="http://mieopm.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
+    <category term="算法类" scheme="http://mieopm.github.io/categories/%E6%8A%80%E6%9C%AF/%E7%AE%97%E6%B3%95%E7%B1%BB/"/>
+    
+    
+    <category term="acm" scheme="http://mieopm.github.io/tags/acm/"/>
+    
+    <category term="算法" scheme="http://mieopm.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="训练记录" scheme="http://mieopm.github.io/tags/%E8%AE%AD%E7%BB%83%E8%AE%B0%E5%BD%95/"/>
     
   </entry>
   
@@ -68,7 +117,7 @@
     <link href="http://mieopm.github.io/2023/07/12/c++_grammer_record_/"/>
     <id>http://mieopm.github.io/2023/07/12/c++_grammer_record_/</id>
     <published>2023-07-12T01:59:30.000Z</published>
-    <updated>2023-07-22T07:49:40.389Z</updated>
+    <updated>2023-08-01T08:13:39.313Z</updated>
     
     
       

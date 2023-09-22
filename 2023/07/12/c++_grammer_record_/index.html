@@ -141,7 +141,12 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="binary-search"><a href="#binary-search" class="headerlink" title="binary_search()"></a><em>binary_search()</em></h2><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/view/7537.html">http://c.biancheng.net/view/7537.html</a></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure> 
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h1 id="增加堆栈空间"><a href="#增加堆栈空间" class="headerlink" title="增加堆栈空间"></a>增加堆栈空间</h1><p>int main() {<br>    int size(512&lt;&lt;20); &#x2F;&#x2F; 512M<br>    <strong>asm</strong> ( “movq %0, %%rsp\n”::”r”((char*)malloc(size)+size)); &#x2F;&#x2F; YOUR CODE</p>
+<pre><code>exit(0);
+</code></pre>
+<p>}</p>
+ 
       <!-- reward -->
       
       <div id="reword-out">
@@ -228,7 +233,7 @@
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            blog
+            Summer training daily record 7.19~7.22
           
         </div>
       </a>
