@@ -368,66 +368,6 @@ git config --global user.email &quot;你的gitHub 邮箱&quot;
       </tags>
   </entry>
   <entry>
-    <title>cs144笔记（一）</title>
-    <url>/2024/09/20/cs144%E7%AC%AC%E4%B8%80%E7%AB%A0%E8%8A%82%E7%AC%94%E8%AE%B0%20/</url>
-    <content><![CDATA[<ol>
-<li>标题 [数个 “#” + 空格 前置]</li>
-<li>强调 [用 “**” 或 “__” 包围]</li>
-<li>斜体 [用 “*” 或 “_” 包围]</li>
-<li>删除线 [用 “~~” 包围]</li>
-<li>代码 [用 “&#96;” 包围]</li>
-<li>代码块 [按三个 “&#96;” 并敲回车]</li>
-<li>引用 [“&gt;” + 空格 前置]</li>
-<li>无序列表 [“-“ 或 “+” + 空格 前置]</li>
-<li>有序列表 [数字 + “.” + 空格 前置]</li>
-<li>链接 [常用 “[ ]” + “( )” 分别包围文本与链接]   <a href="https://github.com/Sakiyary">来看看我贫瘠的仓库罢</a></li>
-<li>任务列表 [“- [ ]” + 空格 前置]</li>
-<li>表格 [用 “|” 绘制表格边框]</li>
-<li>割线 [按三个 “*” 或 “-“ 或 “_” 并敲回车]</li>
-<li>Emoji表情 [“:” 前置]<br>[TOC]</li>
-</ol>
-<h1 id="1-1-app传输流程"><a href="#1-1-app传输流程" class="headerlink" title="1.1 app传输流程"></a>1.1 app传输流程</h1><p>略</p>
-<h1 id="1-2四层网络模型"><a href="#1-2四层网络模型" class="headerlink" title="1.2四层网络模型"></a>1.2四层网络模型</h1><p>| application |-&gt;application presentation<br>| transport |-&gt;session transport<br>| network |-&gt;network<br>| link |-&gt;link physical</p>
-<p><strong>ip:</strong><br>internet protocal<br>尽可能传输数据，但是传输可能无序倒甚至损坏<br><strong>tcp：</strong><br>transmission control protocol<br>尽可能正确传输，复用保证正确传输<br><strong>udp：</strong><br>比tcp简单，不完全保证送达</p>
-<p><img src="/image.png" alt="alt text"></p>
-<p><strong>ip the thin waist</strong><br><img src="/%7BBFA69572-8AF8-4625-8885-7207550B724C%7D.png" alt="alt text"></p>
-<h1 id="1-3ip服务模型"><a href="#1-3ip服务模型" class="headerlink" title="1.3ip服务模型"></a>1.3ip服务模型</h1><p><img src="/%7BC160080B-2EB0-4693-8DF6-4ED550C87D1C%7D.png" alt="alt text"></p>
-<h2 id="the-ip-service-model"><a href="#the-ip-service-model" class="headerlink" title="the ip service model"></a><strong>the ip service model</strong></h2><p><img src="/%7B613DED09-6128-4E38-8A8A-359A73B7095B%7D.png" alt="alt text"></p>
-<h4 id="data"><a href="#data" class="headerlink" title="data"></a>data</h4><p>自包含的包 一步步跳转<br>ipsa:来源地  ipda:目标地<img src="/%7B468D1283-01FC-4E6F-9E8D-D60AAAF0FBD6%7D.png" alt="alt text"></p>
-<h4 id="unreliable"><a href="#unreliable" class="headerlink" title="unreliable"></a>unreliable</h4><p>数据可能丢失</p>
-<h4 id="best-effort"><a href="#best-effort" class="headerlink" title="best effort"></a>best effort</h4><p>尽可能不丢，只err后丢</p>
-<h4 id="connectionless"><a href="#connectionless" class="headerlink" title="connectionless"></a>connectionless</h4><p>不连接 不传输任何状态</p>
-<h2 id="为什么ip服务尽可能简单"><a href="#为什么ip服务尽可能简单" class="headerlink" title="为什么ip服务尽可能简单"></a>为什么ip服务尽可能简单</h2><ol>
-<li>更可靠 更容易更新 开销更低 更快</li>
-<li>端到端原则 </li>
-<li>可信不可信的服务都可以建设到ip服务上</li>
-<li>ip对链路层做了最少的假设</li>
-</ol>
-<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><ol>
-<li>试图防止数据包自循环  在每个数据段头部+跳数(hopcount)字段 ttl字段</li>
-<li>ip分片过长数据包 适应不同能力的链路</li>
-<li>使用头部校验减少数据传错目的地 </li>
-<li>IPv4 ipv6</li>
-<li>可以在header加新功能</li>
-</ol>
-<h2 id="ipv4头部"><a href="#ipv4头部" class="headerlink" title="ipv4头部"></a>ipv4头部</h2><p><img src="/%7B0D74048E-8EF9-4FA6-A632-3B688096163F%7D.png" alt="alt text"></p>
-<p><img src="/%7BEA34E3A9-A028-4BB0-BD78-23D06202B10C%7D.png" alt="alt text"></p>
-<h1 id="1-4-数据包生命周期"><a href="#1-4-数据包生命周期" class="headerlink" title="1.4 数据包生命周期"></a>1.4 数据包生命周期</h1><p><strong>tcp btye stream</strong><br>三次握手</p>
-<ol>
-<li>客户端像服务器发送一个同步消息syn</li>
-<li>服务器响应一个同步消息确认客户端请求 syn ack</li>
-<li>客户端通过确认服务器的同步请求相应 ack<br><img src="/%7B9CA46152-1D4F-4391-A698-96F11A67655B%7D.png" alt="alt text"></li>
-</ol>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
-      <categories>
-        <category>技术</category>
-        <category>基础类</category>
-      </categories>
-      <tags>
-        <tag>学习笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2023/06/25/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -596,6 +536,66 @@ git config --global user.email &quot;你的gitHub 邮箱&quot;
         <tag>待填坑</tag>
         <tag>红茶馆</tag>
         <tag>原创</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cs144笔记（一）</title>
+    <url>/2024/09/20/cs144_notes/</url>
+    <content><![CDATA[<ol>
+<li>标题 [数个 “#” + 空格 前置]</li>
+<li>强调 [用 “**” 或 “__” 包围]</li>
+<li>斜体 [用 “*” 或 “_” 包围]</li>
+<li>删除线 [用 “~~” 包围]</li>
+<li>代码 [用 “&#96;” 包围]</li>
+<li>代码块 [按三个 “&#96;” 并敲回车]</li>
+<li>引用 [“&gt;” + 空格 前置]</li>
+<li>无序列表 [“-“ 或 “+” + 空格 前置]</li>
+<li>有序列表 [数字 + “.” + 空格 前置]</li>
+<li>链接 [常用 “[ ]” + “( )” 分别包围文本与链接]   <a href="https://github.com/Sakiyary">来看看我贫瘠的仓库罢</a></li>
+<li>任务列表 [“- [ ]” + 空格 前置]</li>
+<li>表格 [用 “|” 绘制表格边框]</li>
+<li>割线 [按三个 “*” 或 “-“ 或 “_” 并敲回车]</li>
+<li>Emoji表情 [“:” 前置]<br>[TOC]</li>
+</ol>
+<h1 id="1-1-app传输流程"><a href="#1-1-app传输流程" class="headerlink" title="1.1 app传输流程"></a>1.1 app传输流程</h1><p>略</p>
+<h1 id="1-2四层网络模型"><a href="#1-2四层网络模型" class="headerlink" title="1.2四层网络模型"></a>1.2四层网络模型</h1><p>| application |-&gt;application presentation<br>| transport |-&gt;session transport<br>| network |-&gt;network<br>| link |-&gt;link physical</p>
+<p><strong>ip:</strong><br>internet protocal<br>尽可能传输数据，但是传输可能无序倒甚至损坏<br><strong>tcp：</strong><br>transmission control protocol<br>尽可能正确传输，复用保证正确传输<br><strong>udp：</strong><br>比tcp简单，不完全保证送达</p>
+<p><img src="/image.png" alt="alt text"></p>
+<p><strong>ip the thin waist</strong><br><img src="/%7BBFA69572-8AF8-4625-8885-7207550B724C%7D.png" alt="alt text"></p>
+<h1 id="1-3ip服务模型"><a href="#1-3ip服务模型" class="headerlink" title="1.3ip服务模型"></a>1.3ip服务模型</h1><p><img src="/%7BC160080B-2EB0-4693-8DF6-4ED550C87D1C%7D.png" alt="alt text"></p>
+<h2 id="the-ip-service-model"><a href="#the-ip-service-model" class="headerlink" title="the ip service model"></a><strong>the ip service model</strong></h2><p><img src="/%7B613DED09-6128-4E38-8A8A-359A73B7095B%7D.png" alt="alt text"></p>
+<h4 id="data"><a href="#data" class="headerlink" title="data"></a>data</h4><p>自包含的包 一步步跳转<br>ipsa:来源地  ipda:目标地<img src="/%7B468D1283-01FC-4E6F-9E8D-D60AAAF0FBD6%7D.png" alt="alt text"></p>
+<h4 id="unreliable"><a href="#unreliable" class="headerlink" title="unreliable"></a>unreliable</h4><p>数据可能丢失</p>
+<h4 id="best-effort"><a href="#best-effort" class="headerlink" title="best effort"></a>best effort</h4><p>尽可能不丢，只err后丢</p>
+<h4 id="connectionless"><a href="#connectionless" class="headerlink" title="connectionless"></a>connectionless</h4><p>不连接 不传输任何状态</p>
+<h2 id="为什么ip服务尽可能简单"><a href="#为什么ip服务尽可能简单" class="headerlink" title="为什么ip服务尽可能简单"></a>为什么ip服务尽可能简单</h2><ol>
+<li>更可靠 更容易更新 开销更低 更快</li>
+<li>端到端原则 </li>
+<li>可信不可信的服务都可以建设到ip服务上</li>
+<li>ip对链路层做了最少的假设</li>
+</ol>
+<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><ol>
+<li>试图防止数据包自循环  在每个数据段头部+跳数(hopcount)字段 ttl字段</li>
+<li>ip分片过长数据包 适应不同能力的链路</li>
+<li>使用头部校验减少数据传错目的地 </li>
+<li>IPv4 ipv6</li>
+<li>可以在header加新功能</li>
+</ol>
+<h2 id="ipv4头部"><a href="#ipv4头部" class="headerlink" title="ipv4头部"></a>ipv4头部</h2><p><img src="/%7B0D74048E-8EF9-4FA6-A632-3B688096163F%7D.png" alt="alt text"></p>
+<p><img src="/%7BEA34E3A9-A028-4BB0-BD78-23D06202B10C%7D.png" alt="alt text"></p>
+<h1 id="1-4-数据包生命周期"><a href="#1-4-数据包生命周期" class="headerlink" title="1.4 数据包生命周期"></a>1.4 数据包生命周期</h1><p><strong>tcp btye stream</strong><br>三次握手</p>
+<ol>
+<li>客户端像服务器发送一个同步消息syn</li>
+<li>服务器响应一个同步消息确认客户端请求 syn ack</li>
+<li>客户端通过确认服务器的同步请求相应 ack<br><img src="/%7B9CA46152-1D4F-4391-A698-96F11A67655B%7D.png" alt="alt text"></li>
+</ol>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
+      <categories>
+        <category>技术</category>
+        <category>基础类</category>
+      </categories>
+      <tags>
+        <tag>学习笔记</tag>
       </tags>
   </entry>
 </search>
