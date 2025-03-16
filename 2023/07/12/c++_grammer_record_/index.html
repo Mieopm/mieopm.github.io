@@ -85,7 +85,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.4k</span>
+            <span class="post-count">2.5k</span>
         </span>
     </span>
 
@@ -94,7 +94,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">6 min</span>
+            <span class="post-count">11 min</span>
         </span>
     </span>
 </div>
@@ -146,6 +146,63 @@
 <pre><code>exit(0);
 </code></pre>
 <p>}</p>
+<h2 id="c-引用"><a href="#c-引用" class="headerlink" title="c++引用"></a>c++引用</h2><ol>
+<li>引用的本质：</li>
+</ol>
+<p>引用是一个变量的别名。 可以把它想象成对一个已存在变量的另一个称呼。</p>
+<p>引用不是一个独立的变量，它不占用额外的内存空间来存储自身的值。 它是直接指向原始变量的内存地址。</p>
+<p>对引用的操作等同于对原始变量的操作。</p>
+<ol start="2">
+<li>引用的声明和初始化：</li>
+</ol>
+<p>语法： 类型 &amp;引用名 &#x3D; 变量名;</p>
+<p>类型: 引用所引用的变量的类型。</p>
+<p>&amp;: 引用声明符。 它是区分引用和普通变量声明的关键。</p>
+<p>引用名: 你为引用选择的名称。</p>
+<p>变量名: 引用所引用的已存在的变量的名字。</p>
+<p>必须初始化： 引用在声明时必须立即初始化，即必须指定它所引用的变量。 这是因为引用一旦创建，就永远绑定到那个变量，不能再改变。 尝试不初始化引用会导致编译错误。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> num = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> &amp;refNum = num; <span class="comment">// 正确： refNum 是 num 的引用，并且初始化了</span></span><br><span class="line"><span class="comment">// int &amp;ref;        // 错误： 引用 ref 没有被初始化</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>引用的使用：</li>
+</ol>
+<p>使用引用就像使用原始变量一样。 你可以读取引用的值，修改引用的值，将引用传递给函数等等。 所有这些操作都会直接影响原始变量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">int</span> num = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> &amp;refNum = num;</span><br><span class="line"></span><br><span class="line">cout &lt;&lt; refNum;   <span class="comment">// 输出 10 (读取引用 refNum 的值)</span></span><br><span class="line">refNum = <span class="number">20</span>;     <span class="comment">// 修改引用 refNum 的值（同时修改了 num 的值）</span></span><br><span class="line">cout &lt;&lt; num;      <span class="comment">// 输出 20 (num 的值已经被 refNum 修改)</span></span><br><span class="line">IGNORE_WHEN_COPYING_START</span><br><span class="line">content_copy</span><br><span class="line">download</span><br><span class="line">Use code with caution.</span><br><span class="line">C++</span><br><span class="line">IGNORE_WHEN_COPYING_END</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>引用的特性：</li>
+</ol>
+<p>不能重新绑定： 引用一旦绑定到一个变量，就不能再绑定到另一个变量。</p>
+<p>不存在空引用： 引用必须始终引用一个有效的对象。 不允许有空引用（即引用不指向任何东西）。</p>
+<p>不能引用字面常量： 通常情况下，你不能直接引用字面常量（例如数字、字符串）。 如果你想引用字面常量，需要先将字面常量赋值给一个变量，然后引用这个变量。 但是，使用 const 关键字可以引用常量。</p>
+<p>&#x2F;&#x2F;int &amp;ref &#x3D; 10; &#x2F;&#x2F;错误<br>const int &amp;ref &#x3D; 10; &#x2F;&#x2F;正确，相当于创建了一个临时变量 const int temp &#x3D; 10; int &amp;ref &#x3D; temp;<br>IGNORE_WHEN_COPYING_START<br>content_copy<br>download<br>Use code with caution.<br>C++<br>IGNORE_WHEN_COPYING_END</p>
+<p>引用与指针的区别：</p>
+<p>引用必须初始化，指针可以不初始化。</p>
+<p>引用不能重新绑定，指针可以重新指向。</p>
+<p>引用不存在空引用，指针可以为空指针 (nullptr)。</p>
+<p>引用更安全：由于引用必须初始化且不能重新绑定，因此使用引用可以避免一些空指针和野指针的问题。</p>
+<p>引用更容易使用：使用引用时不需要像指针那样使用 * 解引用操作符。</p>
+<ol start="5">
+<li>引用的应用场景：</li>
+</ol>
+<p>函数参数传递： 通过引用传递参数可以避免复制实参，提高效率，并且允许函数修改实参的值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">increment</span><span class="params">(<span class="type">int</span> &amp;x)</span> </span>&#123;</span><br><span class="line">    x++; <span class="comment">// 修改了实参的值</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> num = <span class="number">5</span>;</span><br><span class="line">    <span class="built_in">increment</span>(num); <span class="comment">// 通过引用传递 num</span></span><br><span class="line">    cout &lt;&lt; num;   <span class="comment">// 输出 6 (num 的值被 increment 函数修改)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">IGNORE_WHEN_COPYING_START</span><br><span class="line">content_copy</span><br><span class="line">download</span><br><span class="line">Use code with caution.</span><br><span class="line">C++</span><br><span class="line">IGNORE_WHEN_COPYING_END</span><br><span class="line"></span><br><span class="line">函数返回值： 函数可以返回引用，允许调用者直接修改函数内部的变量。</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span>&amp; <span class="title">getElement</span><span class="params">(<span class="type">int</span> arr[], <span class="type">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr[index]; <span class="comment">// 返回数组元素的引用</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> numbers[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    <span class="built_in">getElement</span>(numbers, <span class="number">1</span>) = <span class="number">10</span>; <span class="comment">// 修改了 numbers[1] 的值</span></span><br><span class="line">    cout &lt;&lt; numbers[<span class="number">1</span>];           <span class="comment">// 输出 10</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">IGNORE_WHEN_COPYING_START</span><br><span class="line">content_copy</span><br><span class="line">download</span><br><span class="line">Use code with caution.</span><br><span class="line">C++</span><br><span class="line">IGNORE_WHEN_COPYING_END</span><br></pre></td></tr></table></figure>
+<p>运算符重载： 在运算符重载中，可以使用引用来提高效率并允许修改对象的状态。</p>
+<p>示例总结：</p>
+<p>#include <iostream></p>
+<p>int main() {<br>    int x &#x3D; 5;<br>    int &amp;y &#x3D; x; &#x2F;&#x2F; y 是 x 的引用</p>
+<pre><code>std::cout &lt;&lt; &quot;x: &quot; &lt;&lt; x &lt;&lt; std::endl;  // 输出：x: 5
+std::cout &lt;&lt; &quot;y: &quot; &lt;&lt; y &lt;&lt; std::endl;  // 输出：y: 5
+
+y = 10; // 修改 y 的值
+
+std::cout &lt;&lt; &quot;x: &quot; &lt;&lt; x &lt;&lt; std::endl;  // 输出：x: 10  (x 的值也被修改了，因为 y 是 x 的引用)
+std::cout &lt;&lt; &quot;y: &quot; &lt;&lt; y &lt;&lt; std::endl;  // 输出：y: 10
+
+return 0;
+</code></pre>
+<p>}<br>IGNORE_WHEN_COPYING_START<br>content_copy<br>download<br>Use code with caution.<br>C++<br>IGNORE_WHEN_COPYING_END</p>
+<p>希望这个详细的解释能够帮助你理解 C++ 中引用的相关语法和用法。 记住，理解引用就是理解它是原始变量的另一个名字，并且对它的操作会直接影响原始变量。</p>
  
       <!-- reward -->
       
@@ -267,7 +324,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2023
+        2023-2025
         <i class="ri-heart-fill heart_icon"></i> mieopm
       </li>
     </ul>
